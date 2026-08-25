@@ -100,6 +100,138 @@ const products = [
       },
     ],
   },
+  {
+    id: 5,
+    badge: 'B/U',
+    brand: 'Apple',
+    name: 'MacBook Pro M4',
+    color: 'Space Black',
+    storage: '512GB',
+    condition: 'Yaxshi',
+    replaced: 'Batareya',
+    price: '$1,599',
+    installment: '40',
+    images: [
+      {
+        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
+        alt: 'MacBook Pro M4',
+      },
+      {
+        src: '/images/filters_upscale().webp',
+        alt: 'MacBook Pro M4',
+      },
+    ],
+  },
+  {
+    id: 6,
+    badge: 'B/U',
+    brand: 'Apple',
+    name: 'MacBook Pro M4',
+    color: 'Space Black',
+    storage: '512GB',
+    condition: 'Yaxshi',
+    replaced: 'Batareya',
+    price: '$1,599',
+    installment: '40',
+    images: [
+      {
+        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
+        alt: 'MacBook Pro M4',
+      },
+      {
+        src: '/images/filters_upscale().webp',
+        alt: 'MacBook Pro M4',
+      },
+    ],
+  },
+  {
+    id: 7,
+    badge: 'B/U',
+    brand: 'Apple',
+    name: 'MacBook Pro M4',
+    color: 'Space Black',
+    storage: '512GB',
+    condition: 'Yaxshi',
+    replaced: 'Batareya',
+    price: '$1,599',
+    installment: '40',
+    images: [
+      {
+        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
+        alt: 'MacBook Pro M4',
+      },
+      {
+        src: '/images/filters_upscale().webp',
+        alt: 'MacBook Pro M4',
+      },
+    ],
+  },
+  {
+    id: 8,
+    badge: 'B/U',
+    brand: 'Apple',
+    name: 'MacBook Pro M4',
+    color: 'Space Black',
+    storage: '512GB',
+    condition: 'Yaxshi',
+    replaced: 'Batareya',
+    price: '$1,599',
+    installment: '40',
+    images: [
+      {
+        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
+        alt: 'MacBook Pro M4',
+      },
+      {
+        src: '/images/filters_upscale().webp',
+        alt: 'MacBook Pro M4',
+      },
+    ],
+  },
+  {
+    id: 9,
+    badge: 'B/U',
+    brand: 'Apple',
+    name: 'MacBook Pro M4',
+    color: 'Space Black',
+    storage: '512GB',
+    condition: 'Yaxshi',
+    replaced: 'Batareya',
+    price: '$1,599',
+    installment: '40',
+    images: [
+      {
+        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
+        alt: 'MacBook Pro M4',
+      },
+      {
+        src: '/images/filters_upscale().webp',
+        alt: 'MacBook Pro M4',
+      },
+    ],
+  },
+  {
+    id: 10,
+    badge: 'B/U',
+    brand: 'Apple',
+    name: 'MacBook Pro M4',
+    color: 'Space Black',
+    storage: '512GB',
+    condition: 'Yaxshi',
+    replaced: 'Batareya',
+    price: '$1,599',
+    installment: '40',
+    images: [
+      {
+        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
+        alt: 'MacBook Pro M4',
+      },
+      {
+        src: '/images/filters_upscale().webp',
+        alt: 'MacBook Pro M4',
+      },
+    ],
+  },
 ];
 
 export default function ProductGrid() {
