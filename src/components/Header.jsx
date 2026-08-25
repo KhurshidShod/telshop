@@ -192,7 +192,7 @@ export default function Header() {
                 text-gray-700
                 hover:bg-gray-100
                 dark:text-zinc-300
-                dark:hover:bg-white/[0.06]
+                dark:hover:bg-white/6
               "
             >
               {dark ? (
