@@ -1,39 +1,32 @@
-import ProductGrid from "./components/ProductGrid";
+import DiscountBanner from './components/DiscountBanner';
+import Header from './components/Header';
+import Layout from './components/Layout';
+import ProductFilter from './components/ProductFilter';
+import ProductGrid from './components/ProductGrid';
+import ThemeToggle from './components/ThemeToggle';
 
 function App() {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gray-50 dark:bg-zinc-950">
       {/* HEADER */}
 
-      <header className="border-b bg-white">
-        <div
-          className="
-            mx-auto
-            flex
-            h-16
-            max-w-7xl
-            items-center
-            justify-between
-            px-4
-            sm:px-6
-            lg:px-8
-          "
-        >
-          <div>
-            <h1 className="text-lg font-bold tracking-tight">
-              TexnoDom
-            </h1>
-          </div>
+      <Header />
 
-          <div className="text-xs text-muted-foreground">
-            Smartphones
-          </div>
-        </div>
-      </header>
+      {/* DISCOUNT */}
+      <Layout>
+        <DiscountBanner />
+      </Layout>
 
       {/* PRODUCTS */}
+      <Layout>
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+          <ProductFilter />
 
-      <ProductGrid />
+          <div className="min-w-0 flex-1">
+            <ProductGrid />
+          </div>
+        </div>
+      </Layout>
     </main>
   );
 }

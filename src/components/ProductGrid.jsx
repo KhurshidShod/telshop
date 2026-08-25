@@ -236,20 +236,19 @@ const products = [
 
 export default function ProductGrid() {
   return (
-    <section className="w-full px-2 py-4 sm:px-6 lg:px-8">
+    <section className="w-full">
       <div
         className="
-          mx-auto
-          grid
-          max-w-7xl
-          grid-cols-2
-          justify-items-center
-          gap-3
-          sm:grid-cols-3
-          sm:gap-5
-          lg:grid-cols-5
-          lg:gap-5
-        "
+    grid
+    w-full
+    grid-cols-2
+    justify-items-center
+    gap-3
+    sm:grid-cols-3
+    sm:gap-5
+    lg:grid-cols-5
+    lg:gap-5
+  "
       >
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />

@@ -1,3 +1,4 @@
+import { Button } from '@base-ui/react';
 import ProductGallery from './ProductGallery';
 
 const ProductInfoRow = ({ label, value }) => {
@@ -38,14 +39,14 @@ export default function ProductCard({ product }) {
         overflow-hidden
         rounded-2xl
         bg-white
+        dark:bg-zinc-900
         p-3
         shadow-sm
         ring-1
         ring-black/[0.05]
+        dark:ring-white/[0.08]
         transition-all
         duration-200
-        hover:-translate-y-0.5
-        hover:shadow-lg
       "
     >
       {/* GALLERY */}
@@ -61,7 +62,7 @@ export default function ProductCard({ product }) {
             font-semibold
             uppercase
             tracking-wide
-            text-yellow-500
+            text-yellow-400
           "
         >
           {product.brand}
@@ -96,10 +97,11 @@ export default function ProductCard({ product }) {
       {/* PRICE */}
 
       <div className="mt-3 flex items-center justify-between gap-3">
-        <p className="text-xl font-bold">{product.price}</p>
+        <p className="text-xl font-bold text-foreground">{product.price}</p>
 
         <p className="text-sm font-medium text-muted-foreground">${product.installment}/oy</p>
       </div>
+      <Button className="w-full bg-yellow-400 dark:bg-yellow-500 p-2 mt-2 rounded-lg text-gray-900 ring-1 ring-yellow-400 dark:ring-yellow-500 hover:text-yellow-400 hover:bg-white dark:hover:bg-zinc-900 cursor-pointer transition-all">Band qilish</Button>
     </article>
   );
 }

@@ -447,7 +447,6 @@ export default function ProductGallery({ images = [] }) {
                 p-3
                 transition-transform
                 duration-300
-                group-hover:scale-[1.02]
               "
             />
           </button>
@@ -524,13 +523,14 @@ export default function ProductGallery({ images = [] }) {
                     border-2
                     bg-muted
                     transition-all
-
+                    cursor-pointer
                     ${
                       safeCurrent === index
                         ? `
-                          border-yellow-500
+                          border-yellow-400
+                          dark:border-yellow-500
                           ring-2
-                          ring-yellow-500/20
+                          ring-yellow-400/20
                         `
                         : `
                           border-transparent
@@ -813,9 +813,11 @@ export default function ProductGallery({ images = [] }) {
                         ${
                           safeCurrent === index
                             ? `
-                              border-yellow-500
+                              border-yellow-400
+                          dark:border-yellow-500
+
                               ring-2
-                              ring-yellow-500/30
+                              ring-yellow-400/30
                             `
                             : `
                               border-white/10
