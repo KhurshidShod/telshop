@@ -91,7 +91,7 @@ const DiscountBanner = () => {
   };
 
   return (
-    <section className="relative mt-10 w-full sm:mt-16 lg:mt-20">
+    <section className="relative mt-3 w-full sm:mt-10 lg:mt-10">
 
       {/* =====================================================
           PREVIOUS BUTTON
