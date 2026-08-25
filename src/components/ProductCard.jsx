@@ -70,13 +70,20 @@ export default function ProductCard({ product }) {
 
         <h2
           className="
-            mt-0.5
-            line-clamp-2
-            text-sm
-            font-semibold
-            leading-5
-            text-gray-900
-          "
+    mt-0.5
+    line-clamp-2
+    text-sm
+    font-semibold
+    leading-5
+    text-gray-900
+    no-underline
+    visited:text-gray-900
+
+    dark:text-zinc-100
+    dark:visited:text-zinc-100
+
+    sm:text-sm
+  "
         >
           {product.name}
         </h2>
@@ -99,9 +106,13 @@ export default function ProductCard({ product }) {
       <div className="mt-3 flex items-center justify-between gap-3">
         <p className="text-xl font-bold text-foreground">{product.price}</p>
 
-        <p className="text-sm font-medium text-muted-foreground">${product.installment}/oy</p>
+        <p className="text-sm font-medium text-muted-foreground">
+          ${product.installment}/oy
+        </p>
       </div>
-      <Button className="w-full bg-yellow-400 dark:bg-yellow-500 p-2 mt-2 rounded-lg text-gray-900 ring-1 ring-yellow-400 dark:ring-yellow-500 hover:text-yellow-400 hover:bg-white dark:hover:bg-zinc-900 cursor-pointer transition-all">Band qilish</Button>
+      <Button className="w-full bg-yellow-400 dark:bg-yellow-500 p-2 mt-2 rounded-lg text-gray-900 ring-1 ring-yellow-400 dark:ring-yellow-500 hover:text-yellow-400 hover:bg-white dark:hover:bg-zinc-900 cursor-pointer transition-all">
+        Band qilish
+      </Button>
     </article>
   );
 }

@@ -3,7 +3,6 @@ import {
   Menu,
   Moon,
   Search,
-  ShoppingCart,
   Sun,
   X,
 } from 'lucide-react';

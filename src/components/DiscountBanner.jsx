@@ -16,9 +16,7 @@ const banners = [
     description: (
       <>
         Samsungning barcha A seriya telefonlariga{' '}
-        <span className="font-bold text-gray-950">
-          10% dan 35% gacha
-        </span>{' '}
+        <span className="font-bold text-gray-950">10% dan 35% gacha</span>{' '}
         chegirmalar.
       </>
     ),
@@ -39,10 +37,7 @@ const banners = [
     description: (
       <>
         Tanlangan iPhone modellariga{' '}
-        <span className="font-bold text-gray-950">
-          maxsus narxlar
-        </span>
-        .
+        <span className="font-bold text-gray-950">maxsus narxlar</span>.
       </>
     ),
     image: '/images/iphone-17-pro-.png',
@@ -62,10 +57,7 @@ const banners = [
     description: (
       <>
         Yangi va ishlatilgan qurilmalar uchun{' '}
-        <span className="font-bold text-gray-950">
-          foydali takliflar
-        </span>
-        .
+        <span className="font-bold text-gray-950">foydali takliflar</span>.
       </>
     ),
     image: '/images/795d847e3327d0545df3be7f37c04612.png',
@@ -79,20 +71,15 @@ const DiscountBanner = () => {
   const currentBanner = banners[current];
 
   const previous = () => {
-    setCurrent((index) =>
-      index === 0 ? banners.length - 1 : index - 1
-    );
+    setCurrent((index) => (index === 0 ? banners.length - 1 : index - 1));
   };
 
   const next = () => {
-    setCurrent((index) =>
-      index === banners.length - 1 ? 0 : index + 1
-    );
+    setCurrent((index) => (index === banners.length - 1 ? 0 : index + 1));
   };
 
   return (
     <section className="relative mt-3 w-full sm:mt-10 lg:mt-10">
-
       {/* =====================================================
           PREVIOUS BUTTON
       ===================================================== */}
@@ -102,39 +89,36 @@ const DiscountBanner = () => {
         onClick={previous}
         aria-label="Oldingi banner"
         className="
-          absolute
-          left-1
-          top-1/2
-          z-30
-          flex
-          size-10
-          -translate-x-1/2
-          -translate-y-1/2
-          cursor-pointer
-          items-center
-          justify-center
-          rounded-full
-          bg-yellow-400
-          text-gray-950
-          shadow-lg
-          ring-4
-          ring-gray-50
-          transition-all
-          hover:scale-105
-          hover:bg-yellow-300
-
-          sm:left-0
-          sm:size-11
-          sm:ring-5
-
-          lg:size-12.5
-          lg:ring-6
-
-          dark:ring-zinc-950
-        "
+    absolute
+    left-1
+    top-1/2
+    z-30
+    flex
+    size-10
+    -translate-x-1/2
+    -translate-y-1/2
+    items-center
+    justify-center
+    cursor-pointer
+    appearance-none
+    rounded-full
+    border-4
+    border-gray-50
+    bg-yellow-400
+    text-gray-950
+    shadow-lg
+    transition-transform
+    duration-200
+    hover:scale-105
+    active:scale-95
+    sm:size-11
+    lg:size-12.5
+    lg:border-[5px]
+    dark:border-zinc-950
+  "
       >
         <ChevronLeft
-          className="size-6 -translate-x-px sm:size-7"
+          className="size-6 shrink-0 text-gray-950 sm:size-7"
           strokeWidth={2.2}
         />
       </Button>
@@ -148,39 +132,36 @@ const DiscountBanner = () => {
         onClick={next}
         aria-label="Keyingi banner"
         className="
-          absolute
-          right-1
-          top-1/2
-          z-30
-          flex
-          size-10
-          translate-x-1/2
-          -translate-y-1/2
-          cursor-pointer
-          items-center
-          justify-center
-          rounded-full
-          bg-yellow-400
-          text-gray-950
-          shadow-lg
-          ring-4
-          ring-gray-50
-          transition-all
-          hover:scale-105
-          hover:bg-yellow-300
-
-          sm:right-0
-          sm:size-11
-          sm:ring-5
-
-          lg:size-12.5
-          lg:ring-6
-
-          dark:ring-zinc-950
-        "
+    absolute
+    right-1
+    top-1/2
+    z-30
+    flex
+    size-10
+    translate-x-1/2
+    -translate-y-1/2
+    items-center
+    justify-center
+    cursor-pointer
+    appearance-none
+    rounded-full
+    border-4
+    border-gray-50
+    bg-yellow-400
+    text-gray-950
+    shadow-lg
+    transition-transform
+    duration-200
+    hover:scale-105
+    active:scale-95
+    sm:size-11
+    lg:size-12.5
+    lg:border-[5px]
+    dark:border-zinc-950
+  "
       >
         <ChevronRight
-          className="size-6 translate-x-px sm:size-7"
+          className="size-6 shrink-0 text-gray-950 sm:size-7"
           strokeWidth={2.2}
         />
       </Button>
@@ -205,7 +186,6 @@ const DiscountBanner = () => {
           dark:bg-yellow-500
         "
       >
-
         {/* ===================================================
             DECORATIVE BLOBS
         =================================================== */}
@@ -279,7 +259,6 @@ const DiscountBanner = () => {
             duration-500
           "
         >
-
           {/* =================================================
               TEXT
           ================================================= */}
@@ -295,7 +274,6 @@ const DiscountBanner = () => {
               lg:text-left
             "
           >
-
             {/* Label */}
 
             <div
@@ -416,7 +394,6 @@ const DiscountBanner = () => {
               lg:self-end
             "
           >
-
             {/* Glow */}
 
             <div
@@ -479,8 +456,7 @@ const DiscountBanner = () => {
             items-center
             gap-1.5
           "
-        >
-        </div>
+        ></div>
       </div>
     </section>
   );
