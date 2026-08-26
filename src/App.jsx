@@ -1,9 +1,9 @@
 import DiscountBanner from './components/DiscountBanner';
+import Footer from './components/Footer';
 import Header from './components/Header';
 import Layout from './components/Layout';
 import ProductFilter from './components/ProductFilter';
 import ProductGrid from './components/ProductGrid';
-import ThemeToggle from './components/ThemeToggle';
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
           </div>
         </div>
       </Layout>
+      <Footer />
     </main>
   );
 }
