@@ -18,7 +18,7 @@ export default function ProductFilter() {
       className="
         w-full
         lg:sticky
-        lg:top-20
+        lg:top-30
         lg:w-60
         lg:shrink-0
         lg:self-start

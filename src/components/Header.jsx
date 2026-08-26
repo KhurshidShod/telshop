@@ -50,7 +50,7 @@ export default function Header() {
         dark:bg-zinc-900/90
       "
     >
-      <div className="mx-auto max-w-[1450px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1450px]">
         {/* =====================================================
             TOP / MAIN ROW
         ===================================================== */}
