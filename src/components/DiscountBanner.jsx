@@ -89,36 +89,41 @@ const DiscountBanner = () => {
         onClick={previous}
         aria-label="Oldingi banner"
         className="
-    absolute
-    left-1
-    top-1/2
-    z-30
-    flex
-    size-10
-    -translate-x-1/2
-    -translate-y-1/2
-    items-center
-    justify-center
-    cursor-pointer
-    appearance-none
-    rounded-full
-    border-4
-    border-gray-50
-    bg-yellow-400
-    text-gray-950
-    shadow-lg
-    transition-transform
-    duration-200
-    hover:scale-105
-    active:scale-95
-    sm:size-11
-    lg:size-12.5
-    lg:border-[5px]
-    dark:border-zinc-950
-  "
+          absolute
+          left-2
+          top-1/2
+          z-30
+          flex
+          size-9
+          -translate-y-1/2
+          items-center
+          justify-center
+          cursor-pointer
+          appearance-none
+          rounded-full
+          border-3
+          border-gray-50
+          bg-yellow-400
+          text-gray-950
+          shadow-lg
+          transition-transform
+          duration-200
+          hover:scale-105
+          active:scale-95
+
+          sm:left-1
+          sm:size-11
+          sm:-translate-x-1/2
+          sm:border-4
+
+          lg:size-12.5
+          lg:border-[5px]
+
+          dark:border-zinc-950
+        "
       >
         <ChevronLeft
-          className="size-6 shrink-0 text-gray-950 sm:size-7"
+          className="size-5 shrink-0 text-gray-950 sm:size-7"
           strokeWidth={2.2}
         />
       </Button>
@@ -132,36 +137,41 @@ const DiscountBanner = () => {
         onClick={next}
         aria-label="Keyingi banner"
         className="
-    absolute
-    right-1
-    top-1/2
-    z-30
-    flex
-    size-10
-    translate-x-1/2
-    -translate-y-1/2
-    items-center
-    justify-center
-    cursor-pointer
-    appearance-none
-    rounded-full
-    border-4
-    border-gray-50
-    bg-yellow-400
-    text-gray-950
-    shadow-lg
-    transition-transform
-    duration-200
-    hover:scale-105
-    active:scale-95
-    sm:size-11
-    lg:size-12.5
-    lg:border-[5px]
-    dark:border-zinc-950
-  "
+          absolute
+          right-2
+          top-1/2
+          z-30
+          flex
+          size-9
+          -translate-y-1/2
+          items-center
+          justify-center
+          cursor-pointer
+          appearance-none
+          rounded-full
+          border-3
+          border-gray-50
+          bg-yellow-400
+          text-gray-950
+          shadow-lg
+          transition-transform
+          duration-200
+          hover:scale-105
+          active:scale-95
+
+          sm:right-1
+          sm:size-11
+          sm:translate-x-1/2
+          sm:border-4
+
+          lg:size-12.5
+          lg:border-[5px]
+
+          dark:border-zinc-950
+        "
       >
         <ChevronRight
-          className="size-6 shrink-0 text-gray-950 sm:size-7"
+          className="size-5 shrink-0 text-gray-950 sm:size-7"
           strokeWidth={2.2}
         />
       </Button>
@@ -173,11 +183,12 @@ const DiscountBanner = () => {
       <div
         className="
           relative
-          min-h-[520px]
+          min-h-[480px]
           overflow-hidden
           rounded-2xl
           bg-yellow-400
           shadow-sm
+
           sm:min-h-[460px]
           sm:rounded-3xl
 
@@ -194,16 +205,15 @@ const DiscountBanner = () => {
           className="
             pointer-events-none
             absolute
-            -right-24
-            -top-24
-            size-64
+            -right-20
+            -top-20
+            size-56
             rounded-full
             bg-white/15
 
+            sm:-right-24
+            sm:-top-24
             sm:size-80
-            lg:-right-24
-            lg:-top-32
-            lg:size-80
           "
         />
 
@@ -211,14 +221,15 @@ const DiscountBanner = () => {
           className="
             pointer-events-none
             absolute
-            -bottom-32
-            -left-24
-            size-72
+            -bottom-28
+            -left-20
+            size-64
             rounded-full
-            border-[35px]
+            border-[30px]
             border-white/10
 
             sm:-bottom-40
+            sm:-left-24
             sm:size-96
             sm:border-[50px]
           "
@@ -235,22 +246,25 @@ const DiscountBanner = () => {
             z-10
             mx-auto
             flex
-            min-h-[520px]
+            min-h-[480px]
             max-w-7xl
             flex-col
             items-center
             justify-between
-            px-7
-            pt-8
+            gap-4
+            px-10
+            pt-7
             pb-0
-            gap-5
+
             sm:min-h-[460px]
+            sm:gap-5
             sm:px-12
             sm:pt-10
 
             lg:min-h-90
             lg:flex-row
             lg:items-center
+            lg:gap-8
             lg:px-20
             lg:py-10
 
@@ -280,12 +294,13 @@ const DiscountBanner = () => {
               className="
                 mb-3
                 inline-flex
+                max-w-full
                 items-center
                 rounded-full
                 bg-gray-950
                 px-3
                 py-1.5
-                text-[10px]
+                text-[9px]
                 font-semibold
                 uppercase
                 tracking-wider
@@ -324,18 +339,20 @@ const DiscountBanner = () => {
               className="
                 mx-auto
                 mt-4
-                max-w-md
+                max-w-[260px]
                 text-xs
                 font-medium
                 leading-relaxed
                 text-gray-950/70
 
+                sm:max-w-md
                 sm:text-sm
 
                 md:text-base
 
                 lg:mx-0
                 lg:mt-5
+                lg:max-w-lg
                 lg:text-lg
               "
             >
@@ -379,17 +396,19 @@ const DiscountBanner = () => {
           <div
             className="
               relative
-              mt-2
+              mt-1
               flex
+              min-h-[190px]
               w-full
               flex-1
               items-end
               justify-center
 
-              sm:mt-0
-              sm:min-h-[230px]
+              sm:min-h-[220px]
 
+              lg:mt-0
               lg:w-auto
+              lg:min-h-0
               lg:flex-none
               lg:self-end
             "
@@ -402,7 +421,7 @@ const DiscountBanner = () => {
                 absolute
                 bottom-0
                 left-1/2
-                size-52
+                size-48
                 -translate-x-1/2
                 rounded-full
                 bg-white/25
@@ -414,6 +433,8 @@ const DiscountBanner = () => {
               "
             />
 
+            {/* Image */}
+
             <img
               src={currentBanner.image}
               alt={currentBanner.alt}
@@ -421,9 +442,9 @@ const DiscountBanner = () => {
               className="
                 relative
                 z-10
-                max-h-[210px]
+                max-h-[190px]
                 w-auto
-                max-w-[75%]
+                max-w-[78%]
                 object-contain
                 object-bottom
                 drop-shadow-2xl
@@ -442,13 +463,13 @@ const DiscountBanner = () => {
         </div>
 
         {/* ===================================================
-            MOBILE INDICATORS
+            SLIDE INDICATORS
         =================================================== */}
 
         <div
           className="
             absolute
-            bottom-4
+            bottom-3
             left-1/2
             z-20
             flex
