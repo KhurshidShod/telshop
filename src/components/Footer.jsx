@@ -31,7 +31,7 @@ const Footer = () => {
         w-full
         border-t
         border-zinc-800
-        bg-zinc-950
+        bg-zinc-900
         text-zinc-300
 
         sm:mt-20
@@ -87,7 +87,7 @@ const Footer = () => {
                 sm:text-[21px]
               "
             >
-              Texno<span className='text-yellow-400'>Dom</span>
+              Texno<span className="text-yellow-400">Dom</span>
             </h2>
 
             <p

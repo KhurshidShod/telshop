@@ -47,7 +47,7 @@ export default function Header() {
         bg-gray-50/90
         backdrop-blur-xl
         dark:border-white/[0.06]
-        dark:bg-zinc-950/90
+        dark:bg-zinc-900/90
       "
     >
       <div className="mx-auto max-w-[1450px] px-4 sm:px-6 lg:px-8">
