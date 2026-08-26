@@ -1,8 +1,22 @@
-import { Minus, Plus, RotateCcw, X } from 'lucide-react';
+import {
+  Minus,
+  Plus,
+  RotateCcw,
+  X,
+} from 'lucide-react';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 import { Button } from '@/components/ui/button';
 
@@ -46,10 +60,12 @@ export default function ProductGallery({ images = [] }) {
   });
 
   // =========================================================
-  // THUMBNAIL DRAG
+  // THUMBNAILS
   // =========================================================
 
   const thumbnailContainer = useRef(null);
+
+  const viewerThumbnailContainer = useRef(null);
 
   const thumbnailDrag = useRef({
     active: false,
@@ -62,17 +78,10 @@ export default function ProductGallery({ images = [] }) {
   // SAFE CURRENT IMAGE
   // =========================================================
 
-  /*
-   * IMPORTANT:
-   * We do NOT use an effect to reset current.
-   *
-   * This avoids:
-   *
-   * "Calling setState synchronously within an effect"
-   */
-
   const safeCurrent =
-    safeImages.length > 0 ? Math.min(current, safeImages.length - 1) : 0;
+    safeImages.length > 0
+      ? Math.min(current, safeImages.length - 1)
+      : 0;
 
   const currentImage = safeImages[safeCurrent];
 
@@ -99,7 +108,10 @@ export default function ProductGallery({ images = [] }) {
 
   const changeImage = useCallback(
     (index) => {
-      if (index < 0 || index >= safeImages.length) {
+      if (
+        index < 0 ||
+        index >= safeImages.length
+      ) {
         return;
       }
 
@@ -136,7 +148,11 @@ export default function ProductGallery({ images = [] }) {
   const previous = useCallback(() => {
     if (safeImages.length <= 1) return;
 
-    setCurrent((index) => (index === 0 ? safeImages.length - 1 : index - 1));
+    setCurrent((index) =>
+      index === 0
+        ? safeImages.length - 1
+        : index - 1
+    );
 
     resetZoom();
   }, [safeImages.length, resetZoom]);
@@ -148,7 +164,11 @@ export default function ProductGallery({ images = [] }) {
   const next = useCallback(() => {
     if (safeImages.length <= 1) return;
 
-    setCurrent((index) => (index === safeImages.length - 1 ? 0 : index + 1));
+    setCurrent((index) =>
+      index === safeImages.length - 1
+        ? 0
+        : index + 1
+    );
 
     resetZoom();
   }, [safeImages.length, resetZoom]);
@@ -158,7 +178,9 @@ export default function ProductGallery({ images = [] }) {
   // =========================================================
 
   const zoomIn = useCallback(() => {
-    setZoom((value) => Math.min(value + 0.5, 4));
+    setZoom((value) =>
+      Math.min(value + 0.5, 4)
+    );
   }, []);
 
   // =========================================================
@@ -167,7 +189,10 @@ export default function ProductGallery({ images = [] }) {
 
   const zoomOut = useCallback(() => {
     setZoom((value) => {
-      const nextZoom = Math.max(value - 0.5, 1);
+      const nextZoom = Math.max(
+        value - 0.5,
+        1
+      );
 
       if (nextZoom === 1) {
         setPosition({
@@ -196,7 +221,9 @@ export default function ProductGallery({ images = [] }) {
       y: event.clientY - position.y,
     };
 
-    event.currentTarget.setPointerCapture(event.pointerId);
+    event.currentTarget.setPointerCapture(
+      event.pointerId
+    );
   };
 
   // =========================================================
@@ -204,14 +231,21 @@ export default function ProductGallery({ images = [] }) {
   // =========================================================
 
   const handleImagePointerMove = (event) => {
-    if (!imageDragging.current || zoom <= 1) {
+    if (
+      !imageDragging.current ||
+      zoom <= 1
+    ) {
       return;
     }
 
     setPosition({
-      x: event.clientX - imageDragStart.current.x,
+      x:
+        event.clientX -
+        imageDragStart.current.x,
 
-      y: event.clientY - imageDragStart.current.y,
+      y:
+        event.clientY -
+        imageDragStart.current.y,
     });
   };
 
@@ -225,7 +259,9 @@ export default function ProductGallery({ images = [] }) {
     setIsDragging(false);
 
     try {
-      event.currentTarget.releasePointerCapture(event.pointerId);
+      event.currentTarget.releasePointerCapture(
+        event.pointerId
+      );
     } catch {
       // Already released
     }
@@ -248,47 +284,52 @@ export default function ProductGallery({ images = [] }) {
   };
 
   // =========================================================
-  // THUMBNAIL DRAG START
+  // THUMBNAIL DRAG
   // =========================================================
 
-  const handleThumbnailMouseDown = (event) => {
-    const container = thumbnailContainer.current;
-
+  const startThumbnailDrag = (
+    event,
+    container
+  ) => {
     if (!container) return;
 
     thumbnailDrag.current = {
       active: true,
-      startX: event.pageX,
-      startScrollLeft: container.scrollLeft,
+      startX:
+        event.pageX ??
+        event.touches?.[0]?.pageX ??
+        0,
+      startScrollLeft:
+        container.scrollLeft,
       moved: false,
     };
   };
 
-  // =========================================================
-  // THUMBNAIL DRAG MOVE
-  // =========================================================
-
-  const handleThumbnailMouseMove = (event) => {
-    const container = thumbnailContainer.current;
-
+  const moveThumbnailDrag = (
+    event,
+    container
+  ) => {
     const drag = thumbnailDrag.current;
 
     if (!container || !drag.active) {
       return;
     }
 
-    const distance = event.pageX - drag.startX;
+    const currentX =
+      event.pageX ??
+      event.touches?.[0]?.pageX ??
+      0;
+
+    const distance =
+      currentX - drag.startX;
 
     if (Math.abs(distance) > 5) {
       drag.moved = true;
     }
 
-    container.scrollLeft = drag.startScrollLeft - distance;
+    container.scrollLeft =
+      drag.startScrollLeft - distance;
   };
-
-  // =========================================================
-  // THUMBNAIL DRAG END
-  // =========================================================
 
   const endThumbnailDrag = () => {
     thumbnailDrag.current.active = false;
@@ -299,46 +340,79 @@ export default function ProductGallery({ images = [] }) {
   };
 
   // =========================================================
-  // THUMBNAIL TOUCH
+  // NORMAL THUMBNAIL EVENTS
   // =========================================================
 
+  const handleThumbnailMouseDown = (event) => {
+    startThumbnailDrag(
+      event,
+      thumbnailContainer.current
+    );
+  };
+
+  const handleThumbnailMouseMove = (event) => {
+    moveThumbnailDrag(
+      event,
+      thumbnailContainer.current
+    );
+  };
+
   const handleThumbnailTouchStart = (event) => {
-    const container = thumbnailContainer.current;
-
-    if (!container) return;
-
-    thumbnailDrag.current = {
-      active: true,
-      startX: event.touches[0].pageX,
-      startScrollLeft: container.scrollLeft,
-      moved: false,
-    };
+    startThumbnailDrag(
+      event,
+      thumbnailContainer.current
+    );
   };
 
   const handleThumbnailTouchMove = (event) => {
-    const container = thumbnailContainer.current;
-
-    const drag = thumbnailDrag.current;
-
-    if (!container || !drag.active) {
-      return;
-    }
-
-    const distance = event.touches[0].pageX - drag.startX;
-
-    if (Math.abs(distance) > 5) {
-      drag.moved = true;
-    }
-
-    container.scrollLeft = drag.startScrollLeft - distance;
-  };
-
-  const handleThumbnailTouchEnd = () => {
-    endThumbnailDrag();
+    moveThumbnailDrag(
+      event,
+      thumbnailContainer.current
+    );
   };
 
   // =========================================================
-  // KEYBOARD CONTROLS
+  // VIEWER THUMBNAIL EVENTS
+  // =========================================================
+
+  const handleViewerThumbnailMouseDown = (
+    event
+  ) => {
+    startThumbnailDrag(
+      event,
+      viewerThumbnailContainer.current
+    );
+  };
+
+  const handleViewerThumbnailMouseMove = (
+    event
+  ) => {
+    moveThumbnailDrag(
+      event,
+      viewerThumbnailContainer.current
+    );
+  };
+
+  const handleViewerThumbnailTouchStart = (
+    event
+  ) => {
+    startThumbnailDrag(
+      event,
+      viewerThumbnailContainer.current
+    );
+  };
+
+  const handleViewerThumbnailTouchMove = (
+    event
+  ) => {
+    moveThumbnailDrag(
+      event,
+      viewerThumbnailContainer.current
+    );
+  };
+
+  // =========================================================
+  // KEYBOARD
   // =========================================================
 
   useEffect(() => {
@@ -376,12 +450,26 @@ export default function ProductGallery({ images = [] }) {
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener(
+      'keydown',
+      handleKeyDown
+    );
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener(
+        'keydown',
+        handleKeyDown
+      );
     };
-  }, [viewerOpen, closeViewer, previous, next, zoomIn, zoomOut, resetZoom]);
+  }, [
+    viewerOpen,
+    closeViewer,
+    previous,
+    next,
+    zoomIn,
+    zoomOut,
+    resetZoom,
+  ]);
 
   // =========================================================
   // EMPTY STATE
@@ -393,8 +481,10 @@ export default function ProductGallery({ images = [] }) {
         className="
           aspect-square
           w-full
-          rounded-xl
+          rounded-lg
           bg-muted
+
+          sm:rounded-xl
         "
       />
     );
@@ -417,13 +507,16 @@ export default function ProductGallery({ images = [] }) {
             aspect-square
             w-full
             overflow-hidden
-            rounded-xl
+            rounded-lg
             bg-muted
+
+            sm:rounded-xl
           "
         >
           <button
             type="button"
             onClick={openViewer}
+            aria-label="Open product image"
             className="
               group
               relative
@@ -437,38 +530,53 @@ export default function ProductGallery({ images = [] }) {
           >
             <img
               src={currentImage.src}
-              alt={currentImage.alt || 'Product image'}
+              alt={
+                currentImage.alt ||
+                'Product image'
+              }
               draggable={false}
               className="
                 h-full
                 w-full
                 select-none
                 object-contain
-                p-3
+                p-1.5
+
+                sm:p-2
+                md:p-3
+
                 transition-transform
                 duration-300
               "
             />
           </button>
 
+          {/* Image counter */}
+
           {safeImages.length > 1 && (
             <div
               className="
                 absolute
-                bottom-2
+                bottom-1.5
                 left-1/2
                 -translate-x-1/2
                 rounded-full
                 bg-black/60
-                px-2.5
-                py-1
-                text-[10px]
+                px-2
+                py-0.5
+                text-[9px]
                 font-medium
                 text-white
                 backdrop-blur
+
+                sm:bottom-2
+                sm:px-2.5
+                sm:py-1
+                sm:text-[10px]
               "
             >
-              {safeCurrent + 1} / {safeImages.length}
+              {safeCurrent + 1} /{' '}
+              {safeImages.length}
             </div>
           )}
         </div>
@@ -481,49 +589,74 @@ export default function ProductGallery({ images = [] }) {
           <div
             ref={thumbnailContainer}
             className="
-              mt-2
+              mt-1.5
               flex
               w-full
-              gap-2
+              gap-1.5
               overflow-x-auto
-              pb-1
+              pb-0.5
               scrollbar-none
               cursor-grab
               select-none
               active:cursor-grabbing
               touch-pan-x
+
+              sm:mt-2
+              sm:gap-2
+              sm:pb-1
             "
-            onMouseDown={handleThumbnailMouseDown}
-            onMouseMove={handleThumbnailMouseMove}
+            onMouseDown={
+              handleThumbnailMouseDown
+            }
+            onMouseMove={
+              handleThumbnailMouseMove
+            }
             onMouseUp={endThumbnailDrag}
             onMouseLeave={endThumbnailDrag}
-            onTouchStart={handleThumbnailTouchStart}
-            onTouchMove={handleThumbnailTouchMove}
-            onTouchEnd={handleThumbnailTouchEnd}
+            onTouchStart={
+              handleThumbnailTouchStart
+            }
+            onTouchMove={
+              handleThumbnailTouchMove
+            }
+            onTouchEnd={endThumbnailDrag}
           >
-            {safeImages.map((image, index) => (
-              <button
-                key={`${image.src}-${index}`}
-                type="button"
-                onClick={() => {
-                  if (thumbnailDrag.current.moved) {
-                    return;
-                  }
+            {safeImages.map(
+              (image, index) => (
+                <button
+                  key={`${image.src}-${index}`}
+                  type="button"
+                  onClick={() => {
+                    if (
+                      thumbnailDrag.current
+                        .moved
+                    ) {
+                      return;
+                    }
 
-                  changeImage(index);
-                }}
-                className={`
+                    changeImage(index);
+                  }}
+                  className={`
                     relative
-                    h-14
-                    w-14
-                    min-w-14
+                    h-11
+                    w-11
+                    min-w-11
                     shrink-0
                     overflow-hidden
-                    rounded-lg
+                    rounded-md
                     border-2
                     bg-muted
-                    transition-all
                     cursor-pointer
+                    transition-all
+
+                    sm:h-12
+                    sm:w-12
+                    sm:min-w-12
+
+                    md:h-14
+                    md:w-14
+                    md:min-w-14
+
                     ${
                       safeCurrent === index
                         ? `
@@ -538,27 +671,30 @@ export default function ProductGallery({ images = [] }) {
                         `
                     }
                   `}
-              >
-                <img
-                  src={image.src}
-                  alt={image.alt || ''}
-                  draggable={false}
-                  className="
+                >
+                  <img
+                    src={image.src}
+                    alt={
+                      image.alt || ''
+                    }
+                    draggable={false}
+                    className="
                       pointer-events-none
                       h-full
                       w-full
                       select-none
                       object-contain
                     "
-                />
-              </button>
-            ))}
+                  />
+                </button>
+              )
+            )}
           </div>
         )}
       </div>
 
       {/* =====================================================
-          FULLSCREEN DIALOG
+          FULLSCREEN VIEWER
       ===================================================== */}
 
       <Dialog
@@ -591,7 +727,9 @@ export default function ProductGallery({ images = [] }) {
             sm:shadow-2xl
           "
         >
-          <DialogTitle className="sr-only">Product image viewer</DialogTitle>
+          <DialogTitle className="sr-only">
+            Product image viewer
+          </DialogTitle>
 
           {/* Background */}
 
@@ -617,8 +755,9 @@ export default function ProductGallery({ images = [] }) {
               flex
               items-center
               justify-between
-              px-4
-              py-4
+              px-3
+              py-3
+
               sm:px-6
               sm:py-5
             "
@@ -629,15 +768,20 @@ export default function ProductGallery({ images = [] }) {
                 border
                 border-white/10
                 bg-white/[0.08]
-                px-3
-                py-1.5
-                text-xs
+                px-2.5
+                py-1
+                text-[10px]
                 font-medium
                 text-white
                 backdrop-blur-xl
+
+                sm:px-3
+                sm:py-1.5
+                sm:text-xs
               "
             >
-              {safeCurrent + 1} / {safeImages.length}
+              {safeCurrent + 1} /{' '}
+              {safeImages.length}
             </div>
 
             <Button
@@ -645,8 +789,8 @@ export default function ProductGallery({ images = [] }) {
               size="icon"
               onClick={closeViewer}
               className="
-                h-10
-                w-10
+                h-9
+                w-9
                 rounded-full
                 border
                 border-white/10
@@ -655,9 +799,12 @@ export default function ProductGallery({ images = [] }) {
                 backdrop-blur-xl
                 hover:bg-white/[0.15]
                 hover:text-white
+
+                sm:h-10
+                sm:w-10
               "
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4 sm:h-5 sm:w-5" />
             </Button>
           </div>
 
@@ -675,23 +822,34 @@ export default function ProductGallery({ images = [] }) {
               overflow-hidden
               touch-none
               select-none
-              px-4
-              pb-32
-              pt-16
+              px-3
+              pb-28
+              pt-14
 
               sm:px-12
               sm:pb-36
               sm:pt-20
             "
             onWheel={handleWheel}
-            onPointerDown={handleImagePointerDown}
-            onPointerMove={handleImagePointerMove}
-            onPointerUp={handleImagePointerUp}
-            onPointerCancel={handleImagePointerUp}
+            onPointerDown={
+              handleImagePointerDown
+            }
+            onPointerMove={
+              handleImagePointerMove
+            }
+            onPointerUp={
+              handleImagePointerUp
+            }
+            onPointerCancel={
+              handleImagePointerUp
+            }
           >
             <img
               src={currentImage.src}
-              alt={currentImage.alt || 'Product image'}
+              alt={
+                currentImage.alt ||
+                'Product image'
+              }
               draggable={false}
               onDoubleClick={() => {
                 if (zoom === 1) {
@@ -719,13 +877,15 @@ export default function ProductGallery({ images = [] }) {
                   )
                   scale(${zoom})
                 `,
-                transition: isDragging ? 'none' : 'transform 200ms ease',
+                transition: isDragging
+                  ? 'none'
+                  : 'transform 200ms ease',
               }}
             />
           </div>
 
           {/* =================================================
-              BOTTOM AREA
+              BOTTOM CONTROLS
           ================================================= */}
 
           <div
@@ -738,9 +898,9 @@ export default function ProductGallery({ images = [] }) {
               flex
               flex-col
               items-center
-              gap-3
-              px-4
-              pb-4
+              gap-2
+              px-3
+              pb-3
 
               sm:gap-4
               sm:px-6
@@ -753,21 +913,27 @@ export default function ProductGallery({ images = [] }) {
               className="
                 max-w-full
                 overflow-hidden
-                rounded-xl
+                rounded-lg
                 border
                 border-white/10
                 bg-black/40
-                px-2
-                py-2
+                px-1.5
+                py-1.5
                 backdrop-blur-xl
+
+                sm:rounded-xl
+                sm:px-2
+                sm:py-2
               "
             >
               <div
-                ref={thumbnailContainer}
+                ref={
+                  viewerThumbnailContainer
+                }
                 className="
                   flex
-                  max-w-[90vw]
-                  gap-2
+                  max-w-[92vw]
+                  gap-1.5
                   overflow-x-auto
                   scrollbar-none
                   cursor-grab
@@ -776,46 +942,59 @@ export default function ProductGallery({ images = [] }) {
                   active:cursor-grabbing
 
                   sm:max-w-[750px]
+                  sm:gap-2
                 "
-                onMouseDown={handleThumbnailMouseDown}
-                onMouseMove={handleThumbnailMouseMove}
+                onMouseDown={
+                  handleViewerThumbnailMouseDown
+                }
+                onMouseMove={
+                  handleViewerThumbnailMouseMove
+                }
                 onMouseUp={endThumbnailDrag}
                 onMouseLeave={endThumbnailDrag}
-                onTouchStart={handleThumbnailTouchStart}
-                onTouchMove={handleThumbnailTouchMove}
-                onTouchEnd={handleThumbnailTouchEnd}
+                onTouchStart={
+                  handleViewerThumbnailTouchStart
+                }
+                onTouchMove={
+                  handleViewerThumbnailTouchMove
+                }
+                onTouchEnd={endThumbnailDrag}
               >
-                {safeImages.map((image, index) => (
-                  <button
-                    key={`${image.src}-${index}`}
-                    type="button"
-                    onClick={() => {
-                      if (thumbnailDrag.current.moved) {
-                        return;
-                      }
+                {safeImages.map(
+                  (image, index) => (
+                    <button
+                      key={`${image.src}-${index}`}
+                      type="button"
+                      onClick={() => {
+                        if (
+                          thumbnailDrag.current
+                            .moved
+                        ) {
+                          return;
+                        }
 
-                      changeImage(index);
-                    }}
-                    className={`
+                        changeImage(index);
+                      }}
+                      className={`
                         relative
-                        h-12
-                        w-12
-                        min-w-12
+                        h-10
+                        w-10
+                        min-w-10
                         overflow-hidden
-                        rounded-lg
+                        rounded-md
                         border
                         bg-white
 
                         sm:h-14
                         sm:w-14
                         sm:min-w-14
+                        sm:rounded-lg
 
                         ${
                           safeCurrent === index
                             ? `
                               border-yellow-400
-                          dark:border-yellow-500
-
+                              dark:border-yellow-500
                               ring-2
                               ring-yellow-400/30
                             `
@@ -826,20 +1005,21 @@ export default function ProductGallery({ images = [] }) {
                             `
                         }
                       `}
-                  >
-                    <img
-                      src={image.src}
-                      alt=""
-                      draggable={false}
-                      className="
+                    >
+                      <img
+                        src={image.src}
+                        alt=""
+                        draggable={false}
+                        className="
                           pointer-events-none
                           h-full
                           w-full
                           object-contain
                         "
-                    />
-                  </button>
-                ))}
+                      />
+                    </button>
+                  )
+                )}
               </div>
             </div>
 
@@ -849,13 +1029,16 @@ export default function ProductGallery({ images = [] }) {
               className="
                 flex
                 items-center
-                gap-1
+                gap-0.5
                 rounded-full
                 border
                 border-white/10
                 bg-white/[0.08]
-                p-1
+                p-0.5
                 backdrop-blur-xl
+
+                sm:gap-1
+                sm:p-1
               "
             >
               <Button
@@ -864,29 +1047,36 @@ export default function ProductGallery({ images = [] }) {
                 disabled={zoom <= 1}
                 onClick={zoomOut}
                 className="
-                  h-9
-                  w-9
+                  h-8
+                  w-8
                   rounded-full
                   text-white
                   hover:bg-white/10
                   hover:text-white
+
+                  sm:h-9
+                  sm:w-9
                 "
               >
-                <Minus className="h-4 w-4" />
+                <Minus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </Button>
 
               <button
                 type="button"
                 onClick={resetZoom}
                 className="
-                  min-w-14
+                  min-w-12
                   rounded-full
                   px-2
-                  py-2
-                  text-xs
+                  py-1.5
+                  text-[10px]
                   font-medium
                   text-white
                   hover:bg-white/10
+
+                  sm:min-w-14
+                  sm:py-2
+                  sm:text-xs
                 "
               >
                 {Math.round(zoom * 100)}%
@@ -898,33 +1088,39 @@ export default function ProductGallery({ images = [] }) {
                 disabled={zoom >= 4}
                 onClick={zoomIn}
                 className="
-                  h-9
-                  w-9
+                  h-8
+                  w-8
                   rounded-full
                   text-white
                   hover:bg-white/10
                   hover:text-white
+
+                  sm:h-9
+                  sm:w-9
                 "
               >
-                <Plus className="h-4 w-4" />
+                <Plus className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </Button>
 
-              <div className="mx-1 h-5 w-px bg-white/10" />
+              <div className="mx-0.5 h-4 w-px bg-white/10 sm:mx-1 sm:h-5" />
 
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={resetZoom}
                 className="
-                  h-9
-                  w-9
+                  h-8
+                  w-8
                   rounded-full
                   text-white
                   hover:bg-white/10
                   hover:text-white
+
+                  sm:h-9
+                  sm:w-9
                 "
               >
-                <RotateCcw className="h-4 w-4" />
+                <RotateCcw className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
               </Button>
             </div>
           </div>
@@ -943,7 +1139,8 @@ export default function ProductGallery({ images = [] }) {
               lg:block
             "
           >
-            Scroll to zoom · Drag to move · Double-click to zoom
+            Scroll to zoom · Drag to move ·
+            Double-click to zoom
           </div>
         </DialogContent>
       </Dialog>

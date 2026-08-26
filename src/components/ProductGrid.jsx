@@ -78,8 +78,8 @@ const products = [
     ],
   },
 
-  {
-    id: 4,
+  ...Array.from({ length: 7 }, (_, index) => ({
+    id: index + 4,
     badge: 'B/U',
     brand: 'Apple',
     name: 'MacBook Pro M4',
@@ -99,159 +99,39 @@ const products = [
         alt: 'MacBook Pro M4',
       },
     ],
-  },
-  {
-    id: 5,
-    badge: 'B/U',
-    brand: 'Apple',
-    name: 'MacBook Pro M4',
-    color: 'Space Black',
-    storage: '512GB',
-    condition: 'Yaxshi',
-    replaced: 'Batareya',
-    price: '$1,599',
-    installment: '40',
-    images: [
-      {
-        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
-        alt: 'MacBook Pro M4',
-      },
-      {
-        src: '/images/filters_upscale().webp',
-        alt: 'MacBook Pro M4',
-      },
-    ],
-  },
-  {
-    id: 6,
-    badge: 'B/U',
-    brand: 'Apple',
-    name: 'MacBook Pro M4',
-    color: 'Space Black',
-    storage: '512GB',
-    condition: 'Yaxshi',
-    replaced: 'Batareya',
-    price: '$1,599',
-    installment: '40',
-    images: [
-      {
-        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
-        alt: 'MacBook Pro M4',
-      },
-      {
-        src: '/images/filters_upscale().webp',
-        alt: 'MacBook Pro M4',
-      },
-    ],
-  },
-  {
-    id: 7,
-    badge: 'B/U',
-    brand: 'Apple',
-    name: 'MacBook Pro M4',
-    color: 'Space Black',
-    storage: '512GB',
-    condition: 'Yaxshi',
-    replaced: 'Batareya',
-    price: '$1,599',
-    installment: '40',
-    images: [
-      {
-        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
-        alt: 'MacBook Pro M4',
-      },
-      {
-        src: '/images/filters_upscale().webp',
-        alt: 'MacBook Pro M4',
-      },
-    ],
-  },
-  {
-    id: 8,
-    badge: 'B/U',
-    brand: 'Apple',
-    name: 'MacBook Pro M4',
-    color: 'Space Black',
-    storage: '512GB',
-    condition: 'Yaxshi',
-    replaced: 'Batareya',
-    price: '$1,599',
-    installment: '40',
-    images: [
-      {
-        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
-        alt: 'MacBook Pro M4',
-      },
-      {
-        src: '/images/filters_upscale().webp',
-        alt: 'MacBook Pro M4',
-      },
-    ],
-  },
-  {
-    id: 9,
-    badge: 'B/U',
-    brand: 'Apple',
-    name: 'MacBook Pro M4',
-    color: 'Space Black',
-    storage: '512GB',
-    condition: 'Yaxshi',
-    replaced: 'Batareya',
-    price: '$1,599',
-    installment: '40',
-    images: [
-      {
-        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
-        alt: 'MacBook Pro M4',
-      },
-      {
-        src: '/images/filters_upscale().webp',
-        alt: 'MacBook Pro M4',
-      },
-    ],
-  },
-  {
-    id: 10,
-    badge: 'B/U',
-    brand: 'Apple',
-    name: 'MacBook Pro M4',
-    color: 'Space Black',
-    storage: '512GB',
-    condition: 'Yaxshi',
-    replaced: 'Batareya',
-    price: '$1,599',
-    installment: '40',
-    images: [
-      {
-        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
-        alt: 'MacBook Pro M4',
-      },
-      {
-        src: '/images/filters_upscale().webp',
-        alt: 'MacBook Pro M4',
-      },
-    ],
-  },
+  })),
 ];
 
 export default function ProductGrid() {
   return (
-    <section className="w-full">
+    <section className="min-w-0 w-full">
       <div
         className="
-    grid
-    w-full
-    grid-cols-2
-    justify-items-center
-    gap-3
-    sm:grid-cols-3
-    sm:gap-5
-    lg:grid-cols-5
-    lg:gap-5
-  "
+          grid
+          w-full
+          min-w-0
+
+          grid-cols-2
+          gap-2
+
+          min-[360px]:gap-3
+
+          sm:grid-cols-3
+          sm:gap-4
+
+          md:gap-5
+
+          lg:grid-cols-4
+          lg:gap-5
+
+          xl:grid-cols-5
+        "
       >
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard
+            key={product.id}
+            product={product}
+          />
         ))}
       </div>
     </section>

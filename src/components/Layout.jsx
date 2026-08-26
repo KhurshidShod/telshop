@@ -5,29 +5,43 @@ export default function Layout({ children }) {
         mx-auto
         w-full
         max-w-[1550px]
+        min-w-0
 
-        px-4
-        sm:px-6
-        md:px-8
-        lg:px-10
+        px-2
+        py-4
+
+        min-[360px]:px-3
+        min-[360px]:py-5
+
+        sm:px-5
+        sm:py-7
+
+        md:px-7
+        md:py-8
+
+        lg:px-9
+        lg:py-10
+
         xl:px-12
-
-        py-6
-        sm:py-8
-        md:py-10
-        lg:py-12
-        xl:py-14
+        xl:py-12
       "
     >
       <div
         className="
           flex
           w-full
+          min-w-0
           flex-col
-          gap-6
+
+          gap-5
+
+          min-[360px]:gap-6
+
           sm:gap-8
-          md:gap-10
-          lg:gap-12
+
+          md:gap-9
+
+          lg:gap-10
         "
       >
         {children}
