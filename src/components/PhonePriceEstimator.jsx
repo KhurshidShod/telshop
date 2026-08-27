@@ -78,7 +78,7 @@ const conditions = [
   },
   {
     value: "O'rtacha",
-    multiplier: 0.60,
+    multiplier: 0.6,
     description: 'Sezilarli izlar mavjud',
   },
 ];
@@ -108,7 +108,9 @@ export default function PhonePriceEstimator() {
   const [condition, setCondition] = useState('');
   const [color, setColor] = useState('');
 
-  const availableModels = brand ? phoneModels[brand] || [] : [];
+  const availableModels = brand
+    ? phoneModels[brand] || []
+    : [];
 
   const selectedModel = availableModels.find(
     (item) => item.model === model,
@@ -120,7 +122,12 @@ export default function PhonePriceEstimator() {
 
   let estimatedPrice = null;
 
-  if (selectedModel && storage && battery && condition) {
+  if (
+    selectedModel &&
+    storage &&
+    battery &&
+    condition
+  ) {
     const storageData = storageOptions.find(
       (item) => item.value === storage,
     );
@@ -149,7 +156,10 @@ export default function PhonePriceEstimator() {
         conditionData.multiplier *
         batteryMultiplier;
 
-      estimatedPrice = Math.max(Math.round(price), 50);
+      estimatedPrice = Math.max(
+        Math.round(price),
+        50,
+      );
     }
   }
 
@@ -189,10 +199,6 @@ export default function PhonePriceEstimator() {
     <section className="w-full">
       {/* =================================================
           MAIN CONTAINER
-
-          No shadow here.
-
-          This is important because the left side is sticky.
       ================================================= */}
 
       <div
@@ -335,6 +341,7 @@ export default function PhonePriceEstimator() {
                   font-black
                   leading-[0.95]
                   tracking-tight
+                  text-white
 
                   sm:text-4xl
 
@@ -360,9 +367,9 @@ export default function PhonePriceEstimator() {
                   md:text-zinc-400
                 "
               >
-                Telefoningiz haqidagi ma&apos;lumotlarni kiriting.
-                Taxminiy sotib olish narxini bir necha soniyada
-                hisoblab beramiz.
+                Telefoningiz haqidagi ma&apos;lumotlarni
+                kiriting. Taxminiy sotib olish narxini bir
+                necha soniyada hisoblab beramiz.
               </p>
 
               {/* FEATURES */}
@@ -404,8 +411,6 @@ export default function PhonePriceEstimator() {
 
         {/* =================================================
             RIGHT COLUMN
-
-            Border + shadow belong to the RIGHT PANEL.
         ================================================= */}
 
         <div
@@ -415,10 +420,8 @@ export default function PhonePriceEstimator() {
             rounded-b-3xl
             border
             border-border/60
-            bg-white
+            bg-background
             shadow-xl
-
-            dark:bg-zinc-900
 
             lg:rounded-r-3xl
             lg:rounded-b-none
@@ -466,7 +469,7 @@ export default function PhonePriceEstimator() {
 
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-semibold">
+                <label className="text-sm font-semibold text-foreground">
                   Brend
                 </label>
 
@@ -533,6 +536,7 @@ export default function PhonePriceEstimator() {
                         className={`
                           text-sm
                           font-bold
+
                           ${
                             isSelected
                               ? 'text-yellow-600 dark:text-yellow-400'
@@ -554,7 +558,7 @@ export default function PhonePriceEstimator() {
 
             <div className="mt-7 space-y-3">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-semibold">
+                <label className="text-sm font-semibold text-foreground">
                   Model
                 </label>
 
@@ -597,13 +601,16 @@ export default function PhonePriceEstimator() {
                   "
                 >
                   {availableModels.map((item) => {
-                    const isSelected = model === item.model;
+                    const isSelected =
+                      model === item.model;
 
                     return (
                       <button
                         key={item.model}
                         type="button"
-                        onClick={() => setModel(item.model)}
+                        onClick={() =>
+                          setModel(item.model)
+                        }
                         className={`
                           relative
                           flex
@@ -645,7 +652,7 @@ export default function PhonePriceEstimator() {
                           </div>
                         )}
 
-                        <span className="pr-7 text-sm font-bold">
+                        <span className="pr-7 text-sm font-bold text-foreground">
                           {item.model}
                         </span>
 
@@ -664,19 +671,22 @@ export default function PhonePriceEstimator() {
             ================================================= */}
 
             <div className="mt-7 space-y-3">
-              <label className="text-sm font-semibold">
+              <label className="text-sm font-semibold text-foreground">
                 Xotira
               </label>
 
               <div className="grid grid-cols-4 gap-2">
                 {storageOptions.map((item) => {
-                  const isSelected = storage === item.value;
+                  const isSelected =
+                    storage === item.value;
 
                   return (
                     <button
                       key={item.value}
                       type="button"
-                      onClick={() => setStorage(item.value)}
+                      onClick={() =>
+                        setStorage(item.value)
+                      }
                       className={`
                         h-12
                         cursor-pointer
@@ -707,7 +717,7 @@ export default function PhonePriceEstimator() {
 
             <div className="mt-7 space-y-4">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-semibold">
+                <label className="text-sm font-semibold text-foreground">
                   Batareya holati
                 </label>
 
@@ -727,7 +737,7 @@ export default function PhonePriceEstimator() {
                     {getBatteryLabel()}
                   </span>
 
-                  <span className="text-2xl font-black">
+                  <span className="text-2xl font-black text-foreground">
                     {battery}%
                   </span>
                 </div>
@@ -752,7 +762,9 @@ export default function PhonePriceEstimator() {
                   max="100"
                   value={battery}
                   onChange={(event) =>
-                    setBattery(Number(event.target.value))
+                    setBattery(
+                      Number(event.target.value),
+                    )
                   }
                   className="
                     ml-8
@@ -782,19 +794,22 @@ export default function PhonePriceEstimator() {
             ================================================= */}
 
             <div className="mt-7 space-y-3">
-              <label className="text-sm font-semibold">
+              <label className="text-sm font-semibold text-foreground">
                 Holati
               </label>
 
               <div className="grid gap-2 sm:grid-cols-3">
                 {conditions.map((item) => {
-                  const isSelected = condition === item.value;
+                  const isSelected =
+                    condition === item.value;
 
                   return (
                     <button
                       key={item.value}
                       type="button"
-                      onClick={() => setCondition(item.value)}
+                      onClick={() =>
+                        setCondition(item.value)
+                      }
                       className={`
                         relative
                         min-h-[92px]
@@ -832,7 +847,7 @@ export default function PhonePriceEstimator() {
                         </div>
                       )}
 
-                      <div className="text-sm font-bold">
+                      <div className="text-sm font-bold text-foreground">
                         {item.value}
                       </div>
 
@@ -841,7 +856,10 @@ export default function PhonePriceEstimator() {
                       </div>
 
                       <div className="mt-2 text-xs font-bold text-yellow-600 dark:text-yellow-400">
-                        {Math.round(item.multiplier * 100)}% bazaviy
+                        {Math.round(
+                          item.multiplier * 100,
+                        )}
+                        % bazaviy
                       </div>
                     </button>
                   );
@@ -854,19 +872,22 @@ export default function PhonePriceEstimator() {
             ================================================= */}
 
             <div className="mt-7 space-y-3">
-              <label className="text-sm font-semibold">
+              <label className="text-sm font-semibold text-foreground">
                 Rang
               </label>
 
               <div className="flex flex-wrap gap-3">
                 {colors.map((item) => {
-                  const isSelected = color === item.value;
+                  const isSelected =
+                    color === item.value;
 
                   return (
                     <button
                       key={item.value}
                       type="button"
-                      onClick={() => setColor(item.value)}
+                      onClick={() =>
+                        setColor(item.value)
+                      }
                       className="
                         group
                         flex
@@ -928,6 +949,7 @@ export default function PhonePriceEstimator() {
                         className={`
                           text-[11px]
                           font-medium
+
                           ${
                             isSelected
                               ? 'text-foreground'
@@ -1016,8 +1038,8 @@ export default function PhonePriceEstimator() {
                   text-muted-foreground
                 "
               >
-                Yakuniy narx telefonni ko&apos;zdan kechirgandan
-                so&apos;ng aniqlanadi.
+                Yakuniy narx telefonni ko&apos;zdan
+                kechirgandan so&apos;ng aniqlanadi.
               </div>
             </div>
 
@@ -1029,22 +1051,32 @@ export default function PhonePriceEstimator() {
               <Button
                 disabled={!canCalculate}
                 className="
-                  h-12
+                  h-14
+                  min-h-14
+                  w-full
                   flex-1
                   cursor-pointer
                   rounded-xl
                   bg-yellow-400
                   px-5
+                  text-base
                   font-bold
                   text-zinc-950
+
                   hover:bg-yellow-300
+
                   disabled:cursor-not-allowed
                   disabled:opacity-50
+
+                  sm:h-12
+                  sm:min-h-12
+                  sm:w-auto
+                  sm:text-sm
                 "
               >
                 Telefonni sotish
 
-                <ChevronRight className="ml-1 size-4" />
+                <ChevronRight className="ml-1 size-5" />
               </Button>
 
               <Button
@@ -1052,10 +1084,20 @@ export default function PhonePriceEstimator() {
                 variant="outline"
                 onClick={reset}
                 className="
-                  h-12
+                  h-14
+                  min-h-14
+                  w-full
                   cursor-pointer
                   rounded-xl
                   px-5
+                  text-base
+                  font-semibold
+                  text-foreground
+
+                  sm:h-12
+                  sm:min-h-12
+                  sm:w-auto
+                  sm:text-sm
                 "
               >
                 Tozalash
