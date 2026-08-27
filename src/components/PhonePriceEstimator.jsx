@@ -17,14 +17,19 @@ const phoneModels = {
     { model: 'iPhone 17', basePrice: 899 },
     { model: 'iPhone 16 Pro Max', basePrice: 999 },
     { model: 'iPhone 16 Pro', basePrice: 899 },
+    { model: 'iPhone 16', basePrice: 800 },
     { model: 'iPhone 15 Pro Max', basePrice: 899 },
     { model: 'iPhone 15 Pro', basePrice: 799 },
+    { model: 'iPhone 15', basePrice: 700 },
     { model: 'iPhone 14 Pro Max', basePrice: 799 },
     { model: 'iPhone 14 Pro', basePrice: 699 },
+    { model: 'iPhone 14', basePrice: 600 },
     { model: 'iPhone 13 Pro Max', basePrice: 699 },
     { model: 'iPhone 13 Pro', basePrice: 599 },
+    { model: 'iPhone 13', basePrice: 500 },
     { model: 'iPhone 12 Pro Max', basePrice: 599 },
     { model: 'iPhone 12 Pro', basePrice: 499 },
+    { model: 'iPhone 12', basePrice: 200 },
     { model: 'iPhone 11 Pro Max', basePrice: 499 },
     { model: 'iPhone 11 Pro', basePrice: 399 },
     { model: 'iPhone 11', basePrice: 299 },
@@ -35,11 +40,21 @@ const phoneModels = {
     { model: 'Galaxy S25+', basePrice: 999 },
     { model: 'Galaxy S25', basePrice: 799 },
     { model: 'Galaxy S24 Ultra', basePrice: 999 },
+    { model: 'Galaxy S24', basePrice: 899 },
+    { model: 'Galaxy S23 Ultra', basePrice: 799 },
+    { model: 'Galaxy S23', basePrice: 699 },
+    { model: 'Galaxy S22', basePrice: 599 },
   ],
 
   Xiaomi: [
     { model: 'Xiaomi 15 Ultra', basePrice: 999 },
     { model: 'Xiaomi 15', basePrice: 699 },
+    { model: 'Xiaomi 14 Ultra', basePrice: 899 },
+    { model: 'Xiaomi 14', basePrice: 599 },
+    { model: 'Xiaomi 13 Ultra', basePrice: 799 },
+    { model: 'Xiaomi 13', basePrice: 499 },
+    { model: 'Xiaomi 12 Ultra', basePrice: 699 },
+    { model: 'Xiaomi 12', basePrice: 399 },
   ],
 };
 
@@ -53,17 +68,17 @@ const storageOptions = [
 const conditions = [
   {
     value: "A'lo",
-    multiplier: 0.85,
+    multiplier: 0.72,
     description: 'Deyarli yangi',
   },
   {
     value: 'Yaxshi',
-    multiplier: 0.75,
+    multiplier: 0.68,
     description: 'Yengil ishlatilgan',
   },
   {
     value: "O'rtacha",
-    multiplier: 0.62,
+    multiplier: 0.60,
     description: 'Sezilarli izlar mavjud',
   },
 ];
