@@ -384,8 +384,8 @@ export default function PhonePriceEstimator() {
           sm:text-base
         "
               >
-                Telefoningiz haqidagi ma&apos;lumotlarni kiriting. Taxminiy
-                sotib olish narxini bir necha soniyada hisoblab beramiz.
+                Telefoningiz haqidagi ma&apos;lumotlarni kiriting. <br /> Taxminiy
+                sotib olish narxini bir necha <br /> soniyada hisoblab beramiz.
               </p>
 
               {/* FEATURES */}
