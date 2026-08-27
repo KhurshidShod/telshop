@@ -185,6 +185,10 @@ export default function PhonePriceEstimator() {
           relative
           grid
           lg:grid-cols-[0.9fr_1.1fr]
+          border
+            border-border/60
+            rounded-3xl
+            lg:border-none
         "
       >
         {/* =================================================
@@ -192,106 +196,141 @@ export default function PhonePriceEstimator() {
         ================================================= */}
 
         <div className="relative">
-          {/* =================================================
-              STICKY LEFT PANEL
-          ================================================= */}
-
           <div
             className="
-              relative
-              flex
-              min-h-[520px]
-              flex-col
-              justify-center
-              overflow-hidden
-              rounded-t-3xl
-              bg-zinc-950
-              px-6
-              pt-16
-              pb-10
-              text-white
+      relative
+      flex
+      border-none
+      min-h-[520px]
+      flex-col
+      justify-center
+      overflow-hidden
+      rounded-t-3xl
 
-              sm:px-10
-              sm:pt-20
+      bg-zinc-950
+      px-6
+      pt-16
+      pb-10
+      text-white
 
-              lg:sticky
-              lg:top-6
-              lg:h-screen
-              lg:min-h-screen
-              lg:rounded-l-3xl
-              lg:rounded-t-none
-              lg:px-12
-              lg:pt-20
-              lg:pb-14
-            "
+      sm:px-10
+      sm:pt-20
+
+      lg:sticky
+      lg:top-6
+      lg:h-screen
+      lg:min-h-screen
+      lg:rounded-l-3xl
+      lg:rounded-t-none
+      lg:px-12
+      lg:pt-20
+      lg:pb-14
+    "
           >
             {/* =================================================
-                MAN ILLUSTRATION
-            ================================================= */}
+        STORE PHOTO BACKGROUND
+    ================================================= */}
+
+            <div
+              className="
+        pointer-events-none
+        absolute
+        inset-0
+        z-0
+        bg-cover
+        bg-center
+        bg-no-repeat
+      "
+              style={{
+                backgroundImage: "url('/images/magazin.webp')",
+              }}
+            />
+
+            {/* =================================================
+        DARK OVERLAY
+    ================================================= */}
+
+            <div
+              className="
+        pointer-events-none
+        absolute
+        inset-0
+        z-0
+        bg-zinc-950/50
+      "
+            />
+
+            {/* =================================================
+        LEFT GRADIENT
+    ================================================= */}
+
+            <div
+              className="
+        pointer-events-none
+        absolute
+        inset-0
+        z-0
+        bg-gradient-to-t
+        lg:bg-gradient-to-r
+        from-zinc-950/90
+        dark:from-zinc-950
+        via-zinc-950/70
+        to-transparent
+      "
+            />
+
+            {/* =================================================
+        MAN ILLUSTRATION
+        KEEPING YOUR ORIGINAL MAN1
+    ================================================= */}
 
             <img
               src="/images/Man1.png"
               alt=""
               aria-hidden="true"
               className="
-                pointer-events-none
-                absolute
-                bottom-0
-                right-[-100px]
-                z-0
-                h-[430px]
-                w-auto
-                object-contain
+              pointer-events-none
+              absolute
+              bottom-0
+              right-[-100px]
+              z-[1]
+              h-[430px]
+              w-auto
+              object-contain
+              brightness-75
 
-                sm:right-[-70px]
-                sm:h-[500px]
+              sm:right-[-70px]
+              sm:h-[500px]
 
-                lg:right-[-50px]
-                lg:h-[min(620px,85vh)]
-              "
+              lg:right-[-50px]
+              lg:h-[min(620px,85vh)]
+  "
             />
 
             {/* =================================================
-                IMAGE GRADIENT
-            ================================================= */}
+        CONTENT
+    ================================================= */}
 
             <div
               className="
-                pointer-events-none
-                absolute
-                inset-0
-                z-0
-                bg-gradient-to-r
-                from-zinc-950
-                via-zinc-950/90
-                to-transparent
-              "
-            />
-
-            {/* =================================================
-                LEFT CONTENT
-            ================================================= */}
-
-            <div
-              className="
-                relative
-                z-10
-                max-w-md
-              "
+        relative
+        z-10
+        max-w-md
+      "
             >
               {/* ICON */}
 
               <div
                 className="
-                  mb-5
-                  flex
-                  size-12
-                  items-center
-                  justify-center
-                  rounded-2xl
-                  bg-yellow-400
-                  text-zinc-950
-                "
+          mb-5
+          flex
+          size-12
+          items-center
+          justify-center
+          rounded-2xl
+          bg-yellow-400
+          text-zinc-950
+        "
               >
                 <Smartphone className="size-6" />
               </div>
@@ -300,13 +339,13 @@ export default function PhonePriceEstimator() {
 
               <p
                 className="
-                  mb-3
-                  text-xs
-                  font-bold
-                  uppercase
-                  tracking-[0.18em]
-                  text-yellow-400
-                "
+          mb-3
+          text-xs
+          font-bold
+          uppercase
+          tracking-[0.18em]
+          text-yellow-400
+        "
               >
                 Telefoningizni soting
               </p>
@@ -315,17 +354,17 @@ export default function PhonePriceEstimator() {
 
               <h2
                 className="
-                  max-w-md
-                  text-3xl
-                  font-black
-                  leading-[0.95]
-                  tracking-tight
-                  text-white
+          max-w-md
+          text-3xl
+          font-black
+          leading-[0.95]
+          tracking-tight
+          text-white
 
-                  sm:text-4xl
+          sm:text-4xl
 
-                  lg:text-5xl
-                "
+          lg:text-5xl
+        "
               >
                 Telefoningiz
                 <br />
@@ -336,15 +375,14 @@ export default function PhonePriceEstimator() {
 
               <p
                 className="
-                  mt-5
-                  max-w-md
-                  text-sm
-                  leading-6
-                  text-zinc-200
+          mt-5
+          max-w-md
+          text-sm
+          leading-6
+          text-zinc-200
 
-                  sm:text-base
-                  md:text-zinc-400
-                "
+          sm:text-base
+        "
               >
                 Telefoningiz haqidagi ma&apos;lumotlarni kiriting. Taxminiy
                 sotib olish narxini bir necha soniyada hisoblab beramiz.
@@ -361,15 +399,15 @@ export default function PhonePriceEstimator() {
                   <div key={item} className="flex items-center gap-3">
                     <div
                       className="
-                        flex
-                        size-5
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-full
-                        bg-yellow-400
-                        text-zinc-950
-                      "
+                flex
+                size-5
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                bg-yellow-400
+                text-zinc-950
+              "
                     >
                       <Check className="size-3.5" />
                     </div>
@@ -391,13 +429,15 @@ export default function PhonePriceEstimator() {
             relative
             overflow-hidden
             rounded-b-3xl
-            border
+            lg:border
             border-border/60
+            border-t-0
+            lg:border-t-1
             bg-background
             shadow-xl
 
             lg:rounded-r-3xl
-            lg:rounded-b-none
+            lg:rounded-bl-none
           "
         >
           <div
