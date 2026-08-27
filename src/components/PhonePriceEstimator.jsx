@@ -385,7 +385,7 @@ export default function PhonePriceEstimator() {
         "
               >
                 Telefoningiz haqidagi ma&apos;lumotlarni kiriting. <br /> Taxminiy
-                sotib olish narxini bir necha <br /> soniyada hisoblab beramiz.
+                sotib olish narxini bir necha soniyada <br /> hisoblab beramiz.
               </p>
 
               {/* FEATURES */}
