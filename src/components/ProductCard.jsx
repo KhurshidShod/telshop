@@ -29,11 +29,11 @@ export default function ProductCard({ product }) {
         w-full
         min-w-0
         overflow-hidden
-        rounded-xl
-        bg-white
-        p-2.5
-        shadow-sm
-        ring-1
+        sm:rounded-xl
+        sm:bg-white
+        sm:p-2.5
+        sm:shadow-sm
+        sm:ring-1
         ring-black/[0.05]
         transition-all
         duration-200
