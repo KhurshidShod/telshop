@@ -2,6 +2,7 @@ import DiscountBanner from './components/DiscountBanner';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Layout from './components/Layout';
+import PhonePriceEstimator from './components/PhonePriceEstimator';
 import ProductFilter from './components/ProductFilter';
 import ProductGrid from './components/ProductGrid';
 
@@ -15,6 +16,9 @@ function App() {
       {/* DISCOUNT */}
       <Layout>
         <DiscountBanner />
+      </Layout>
+      <Layout>
+        <PhonePriceEstimator />
       </Layout>
 
       {/* PRODUCTS */}
