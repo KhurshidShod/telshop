@@ -108,13 +108,9 @@ export default function PhonePriceEstimator() {
   const [condition, setCondition] = useState('');
   const [color, setColor] = useState('');
 
-  const availableModels = brand
-    ? phoneModels[brand] || []
-    : [];
+  const availableModels = brand ? phoneModels[brand] || [] : [];
 
-  const selectedModel = availableModels.find(
-    (item) => item.model === model,
-  );
+  const selectedModel = availableModels.find((item) => item.model === model);
 
   // =================================================
   // PRICE CALCULATION
@@ -122,19 +118,10 @@ export default function PhonePriceEstimator() {
 
   let estimatedPrice = null;
 
-  if (
-    selectedModel &&
-    storage &&
-    battery &&
-    condition
-  ) {
-    const storageData = storageOptions.find(
-      (item) => item.value === storage,
-    );
+  if (selectedModel && storage && battery && condition) {
+    const storageData = storageOptions.find((item) => item.value === storage);
 
-    const conditionData = conditions.find(
-      (item) => item.value === condition,
-    );
+    const conditionData = conditions.find((item) => item.value === condition);
 
     if (storageData && conditionData) {
       const batteryValue = Number(battery);
@@ -156,20 +143,12 @@ export default function PhonePriceEstimator() {
         conditionData.multiplier *
         batteryMultiplier;
 
-      estimatedPrice = Math.max(
-        Math.round(price),
-        50,
-      );
+      estimatedPrice = Math.max(Math.round(price), 50);
     }
   }
 
   const canCalculate =
-    brand &&
-    model &&
-    storage &&
-    battery &&
-    condition &&
-    color;
+    brand && model && storage && battery && condition && color;
 
   // =================================================
   // RESET
@@ -367,9 +346,8 @@ export default function PhonePriceEstimator() {
                   md:text-zinc-400
                 "
               >
-                Telefoningiz haqidagi ma&apos;lumotlarni
-                kiriting. Taxminiy sotib olish narxini bir
-                necha soniyada hisoblab beramiz.
+                Telefoningiz haqidagi ma&apos;lumotlarni kiriting. Taxminiy
+                sotib olish narxini bir necha soniyada hisoblab beramiz.
               </p>
 
               {/* FEATURES */}
@@ -380,10 +358,7 @@ export default function PhonePriceEstimator() {
                   'Telefon holatiga qarab hisoblash',
                   "Ma'lumotlaringiz xavfsiz",
                 ].map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-3"
-                  >
+                  <div key={item} className="flex items-center gap-3">
                     <div
                       className="
                         flex
@@ -399,9 +374,7 @@ export default function PhonePriceEstimator() {
                       <Check className="size-3.5" />
                     </div>
 
-                    <span className="text-sm text-zinc-300">
-                      {item}
-                    </span>
+                    <span className="text-sm text-zinc-300">{item}</span>
                   </div>
                 ))}
               </div>
@@ -601,16 +574,13 @@ export default function PhonePriceEstimator() {
                   "
                 >
                   {availableModels.map((item) => {
-                    const isSelected =
-                      model === item.model;
+                    const isSelected = model === item.model;
 
                     return (
                       <button
                         key={item.model}
                         type="button"
-                        onClick={() =>
-                          setModel(item.model)
-                        }
+                        onClick={() => setModel(item.model)}
                         className={`
                           relative
                           flex
@@ -677,16 +647,13 @@ export default function PhonePriceEstimator() {
 
               <div className="grid grid-cols-4 gap-2">
                 {storageOptions.map((item) => {
-                  const isSelected =
-                    storage === item.value;
+                  const isSelected = storage === item.value;
 
                   return (
                     <button
                       key={item.value}
                       type="button"
-                      onClick={() =>
-                        setStorage(item.value)
-                      }
+                      onClick={() => setStorage(item.value)}
                       className={`
                         h-12
                         cursor-pointer
@@ -712,8 +679,8 @@ export default function PhonePriceEstimator() {
             </div>
 
             {/* =================================================
-                BATTERY
-            ================================================= */}
+    BATTERY
+================================================= */}
 
             <div className="mt-7 space-y-4">
               <div className="flex items-center justify-between">
@@ -724,15 +691,15 @@ export default function PhonePriceEstimator() {
                 <div className="flex items-center gap-2">
                   <span
                     className="
-                      rounded-lg
-                      bg-yellow-400/10
-                      px-2
-                      py-1
-                      text-xs
-                      font-bold
-                      text-yellow-600
-                      dark:text-yellow-400
-                    "
+          rounded-lg
+          bg-yellow-400/10
+          px-2
+          py-1
+          text-xs
+          font-bold
+          text-yellow-600
+          dark:text-yellow-400
+        "
                   >
                     {getBatteryLabel()}
                   </span>
@@ -743,17 +710,28 @@ export default function PhonePriceEstimator() {
                 </div>
               </div>
 
-              <div className="relative">
+              {/* CUSTOM BATTERY SLIDER */}
+
+              <label
+                className="
+      battery-slider
+      group
+      flex
+      w-full
+      cursor-pointer
+      items-center
+    "
+                style={{
+                  '--slider-progress': `${((battery - 50) / 50) * 100}%`,
+                }}
+              >
                 <Battery
                   className="
-                    pointer-events-none
-                    absolute
-                    left-0
-                    top-1/2
-                    size-5
-                    -translate-y-1/2
-                    text-yellow-500
-                  "
+        mr-4
+        size-5
+        shrink-0
+        text-yellow-500
+      "
                 />
 
                 <input
@@ -761,27 +739,20 @@ export default function PhonePriceEstimator() {
                   min="50"
                   max="100"
                   value={battery}
-                  onChange={(event) =>
-                    setBattery(
-                      Number(event.target.value),
-                    )
-                  }
-                  className="
-                    ml-8
-                    w-[calc(100%-32px)]
-                    cursor-pointer
-                    accent-yellow-400
-                  "
+                  onChange={(event) => setBattery(Number(event.target.value))}
+                  className="battery-level"
+                  aria-label="Batareya foizi"
                 />
-              </div>
+              </label>
 
               <div
                 className="
-                  flex
-                  justify-between
-                  text-xs
-                  text-muted-foreground
-                "
+      flex
+      justify-between
+      pl-9
+      text-xs
+      text-muted-foreground
+    "
               >
                 <span>50%</span>
                 <span>75%</span>
@@ -800,16 +771,13 @@ export default function PhonePriceEstimator() {
 
               <div className="grid gap-2 sm:grid-cols-3">
                 {conditions.map((item) => {
-                  const isSelected =
-                    condition === item.value;
+                  const isSelected = condition === item.value;
 
                   return (
                     <button
                       key={item.value}
                       type="button"
-                      onClick={() =>
-                        setCondition(item.value)
-                      }
+                      onClick={() => setCondition(item.value)}
                       className={`
                         relative
                         min-h-[92px]
@@ -856,10 +824,7 @@ export default function PhonePriceEstimator() {
                       </div>
 
                       <div className="mt-2 text-xs font-bold text-yellow-600 dark:text-yellow-400">
-                        {Math.round(
-                          item.multiplier * 100,
-                        )}
-                        % bazaviy
+                        {Math.round(item.multiplier * 100)}% bazaviy
                       </div>
                     </button>
                   );
@@ -878,16 +843,13 @@ export default function PhonePriceEstimator() {
 
               <div className="flex flex-wrap gap-3">
                 {colors.map((item) => {
-                  const isSelected =
-                    color === item.value;
+                  const isSelected = color === item.value;
 
                   return (
                     <button
                       key={item.value}
                       type="button"
-                      onClick={() =>
-                        setColor(item.value)
-                      }
+                      onClick={() => setColor(item.value)}
                       className="
                         group
                         flex
@@ -1001,9 +963,7 @@ export default function PhonePriceEstimator() {
                         text-foreground
                       "
                     >
-                      {estimatedPrice
-                        ? formatPrice(estimatedPrice)
-                        : '—'}
+                      {estimatedPrice ? formatPrice(estimatedPrice) : '—'}
                     </span>
                   </div>
                 </div>
@@ -1038,8 +998,8 @@ export default function PhonePriceEstimator() {
                   text-muted-foreground
                 "
               >
-                Yakuniy narx telefonni ko&apos;zdan
-                kechirgandan so&apos;ng aniqlanadi.
+                Yakuniy narx telefonni ko&apos;zdan kechirgandan so&apos;ng
+                aniqlanadi.
               </div>
             </div>
 
@@ -1075,7 +1035,6 @@ export default function PhonePriceEstimator() {
                 "
               >
                 Telefonni sotish
-
                 <ChevronRight className="ml-1 size-5" />
               </Button>
 

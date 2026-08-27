@@ -362,3 +362,158 @@
 .dark .texnodom-checkbox:checked {
   border-color: #facc15;
 }
+/* =========================================================
+   TEXNODOM BATTERY SLIDER
+========================================================= */
+
+.battery-slider {
+  --slider-width: 100%;
+  --slider-height: 6px;
+  --slider-hover-height: 12px;
+
+  --slider-bg: rgb(228 228 231);
+  --slider-progress-color: #facc15;
+
+  --slider-radius: 999px;
+
+  --slider-transition: 0.15s ease;
+}
+
+.dark .battery-slider {
+  --slider-bg: rgb(63 63 70);
+}
+
+
+/* =========================================================
+   RANGE
+========================================================= */
+
+.battery-slider .battery-level {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: var(--slider-width);
+  height: var(--slider-height);
+
+  border: none;
+  border-radius: var(--slider-radius);
+
+  background:
+    linear-gradient(
+      to right,
+      var(--slider-progress-color) 0%,
+      var(--slider-progress-color) var(--slider-progress),
+      var(--slider-bg) var(--slider-progress),
+      var(--slider-bg) 100%
+    );
+
+  outline: none;
+
+  cursor: inherit;
+
+  transition:
+    height var(--slider-transition);
+}
+
+
+/* =========================================================
+   CHROME / EDGE / SAFARI TRACK
+========================================================= */
+
+.battery-slider .battery-level::-webkit-slider-runnable-track {
+  height: var(--slider-height);
+
+  border: none;
+  border-radius: var(--slider-radius);
+
+  background: transparent;
+}
+
+
+/* =========================================================
+   FIREFOX TRACK
+========================================================= */
+
+.battery-slider .battery-level::-moz-range-track {
+  height: var(--slider-height);
+
+  border: none;
+  border-radius: var(--slider-radius);
+
+  background: transparent;
+}
+
+
+/* =========================================================
+   THUMB — CHROME / EDGE / SAFARI
+
+   Invisible thumb like the original design.
+   The track itself becomes the progress.
+========================================================= */
+
+.battery-slider .battery-level::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 0;
+  height: 0;
+
+  border: none;
+
+  background: transparent;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   THUMB — FIREFOX
+========================================================= */
+
+.battery-slider .battery-level::-moz-range-thumb {
+  width: 0;
+  height: 0;
+
+  border: none;
+
+  background: transparent;
+}
+
+
+/* =========================================================
+   HOVER
+
+   The original slider becomes thicker when hovered.
+========================================================= */
+
+.battery-slider:hover .battery-level {
+  height: var(--slider-hover-height);
+}
+
+
+/* =========================================================
+   ACTIVE
+
+   Slightly thicker while dragging.
+========================================================= */
+
+.battery-slider:active .battery-level {
+  height: var(--slider-hover-height);
+}
+
+
+/* =========================================================
+   FOCUS
+========================================================= */
+
+.battery-slider .battery-level:focus-visible {
+  outline: none;
+}
+
+.battery-slider .battery-level:focus-visible::-webkit-slider-thumb {
+  box-shadow: none;
+}
+
+.battery-slider .battery-level:focus-visible::-moz-range-thumb {
+  box-shadow: none;
+}
