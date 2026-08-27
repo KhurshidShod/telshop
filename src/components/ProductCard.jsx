@@ -38,8 +38,8 @@ export default function ProductCard({ product }) {
         transition-all
         duration-200
 
-        dark:bg-zinc-900
-        dark:ring-white/[0.08]
+        sm:dark:bg-zinc-900
+        sm:dark:ring-white/[0.08]
 
         sm:rounded-2xl
         sm:p-3
