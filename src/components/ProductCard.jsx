@@ -3,16 +3,16 @@ import ProductGallery from './ProductGallery';
 
 const ProductInfoRow = ({ label, value }) => {
   return (
-    <div className="flex min-w-0 items-baseline gap-1 text-[11px] sm:text-xs md:text-sm">
+    <div className="flex min-w-0 items-start gap-1 text-[11px] sm:text-xs md:text-sm">
       <span className="shrink-0 font-medium text-foreground">
         {label}
       </span>
 
-      <span className="min-w-2 flex-1 overflow-hidden whitespace-nowrap text-muted-foreground/30 tracking-[2px]">
+      <span className="min-w-2 flex-1 overflow-hidden text-muted-foreground/30 tracking-[2px]">
         ·····································
       </span>
 
-      <span className="max-w-[45%] shrink-0 truncate text-right text-muted-foreground">
+      <span className="min-w-0 shrink-0 break-words text-right text-muted-foreground">
         {value}
       </span>
     </div>
