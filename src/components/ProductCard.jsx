@@ -175,7 +175,7 @@ export default function ProductCard({ product }) {
             sm:text-sm
           "
         >
-          ${product.installment}/oy
+          ${product.installment} x 24oy
         </p>
       </div>
 

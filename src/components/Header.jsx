@@ -48,6 +48,13 @@ export default function Header() {
         backdrop-blur-xl
         dark:border-white/[0.06]
         dark:bg-zinc-900/90
+        px-2
+        min-[360px]:px-3
+        sm:px-5
+        md:px-7
+        lg:px-9
+        xl:px-12
+
       "
     >
       <div className="mx-auto max-w-[1450px]">
