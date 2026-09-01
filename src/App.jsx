@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Route, Routes } from 'react-router';
 
 import DiscountBanner from './components/DiscountBanner';
 import Footer from './components/Footer';
@@ -7,7 +8,13 @@ import Layout from './components/Layout';
 import PhonePriceEstimator from './components/PhonePriceEstimator';
 import ProductFilter from './components/ProductFilter';
 import ProductGrid from './components/ProductGrid';
-    const products = [
+import ProductPage from './components/ProductPage';
+
+/* ============================================================
+   PRODUCTS
+============================================================ */
+
+const products = [
   {
     id: 1,
     badge: 'Yangi',
@@ -108,14 +115,22 @@ import ProductGrid from './components/ProductGrid';
     ],
   })),
 ];
-function App() {
+
+/* ============================================================
+   HOME PAGE
+============================================================ */
+
+function HomePage() {
   const [phoneEstimatorOpen, setPhoneEstimatorOpen] =
     useState(false);
-
 
   return (
     <main className="min-h-screen bg-gray-50 dark:bg-zinc-950">
       <Header />
+
+      {/* ======================================================
+          DISCOUNT BANNER
+      ====================================================== */}
 
       <Layout>
         <DiscountBanner />
@@ -214,9 +229,7 @@ function App() {
 
               <button
                 type="button"
-                onClick={() =>
-                  setPhoneEstimatorOpen(true)
-                }
+                onClick={() => setPhoneEstimatorOpen(true)}
                 className="
                   flex
                   h-14
@@ -251,7 +264,7 @@ function App() {
       </Layout>
 
       {/* ======================================================
-          PHONE ESTIMATOR MODAL
+          PHONE ESTIMATOR
       ====================================================== */}
 
       <PhonePriceEstimator
@@ -260,7 +273,9 @@ function App() {
         products={products}
       />
 
-      {/* PRODUCTS */}
+      {/* ======================================================
+          PRODUCTS
+      ====================================================== */}
 
       <Layout>
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
@@ -274,6 +289,68 @@ function App() {
 
       <Footer />
     </main>
+  );
+}
+
+/* ============================================================
+   PRODUCT ROUTE
+============================================================ */
+
+function ProductRoute() {
+  return <ProductPage products={products} />;
+}
+
+/* ============================================================
+   APP / ROUTES
+============================================================ */
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+
+      <Route
+        path="/products/:productId"
+        element={<ProductRoute />}
+      />
+
+      {/* 404 fallback */}
+      <Route
+        path="*"
+        element={
+          <main className="flex min-h-screen items-center justify-center bg-gray-50 dark:bg-zinc-950">
+            <div className="text-center">
+              <h1 className="text-5xl font-black text-foreground">
+                404
+              </h1>
+
+              <p className="mt-3 text-muted-foreground">
+                Sahifa topilmadi.
+              </p>
+
+              <a
+                href="/"
+                className="
+                  mt-6
+                  inline-flex
+                  rounded-xl
+                  bg-yellow-400
+                  px-6
+                  py-3
+                  text-sm
+                  font-bold
+                  text-zinc-950
+                  transition
+                  hover:bg-yellow-300
+                "
+              >
+                Bosh sahifaga
+              </a>
+            </div>
+          </main>
+        }
+      />
+    </Routes>
   );
 }
 

@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 
+import { Link } from 'react-router';
 import { Button } from '@/components/ui/button';
 
 const categories = [
@@ -21,7 +22,6 @@ const categories = [
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Replace this with your existing theme logic
   const [dark, setDark] = useState(
     document.documentElement.classList.contains('dark')
   );
@@ -29,8 +29,15 @@ export default function Header() {
   const toggleTheme = () => {
     const next = !dark;
 
-    document.documentElement.classList.toggle('dark', next);
-    localStorage.setItem('theme', next ? 'dark' : 'light');
+    document.documentElement.classList.toggle(
+      'dark',
+      next
+    );
+
+    localStorage.setItem(
+      'theme',
+      next ? 'dark' : 'light'
+    );
 
     setDark(next);
   };
@@ -54,7 +61,6 @@ export default function Header() {
         md:px-7
         lg:px-9
         xl:px-12
-
       "
     >
       <div className="mx-auto max-w-[1450px]">
@@ -64,10 +70,13 @@ export default function Header() {
 
         <div className="flex h-16 items-center gap-4">
           {/* Mobile menu */}
+
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setMobileOpen((value) => !value)}
+            onClick={() =>
+              setMobileOpen((value) => !value)
+            }
             className="
               size-10
               shrink-0
@@ -84,8 +93,9 @@ export default function Header() {
           </Button>
 
           {/* Logo */}
-          <a
-            href="/"
+
+          <Link
+            to="/"
             className="
               shrink-0
               text-xl
@@ -97,9 +107,10 @@ export default function Header() {
             "
           >
             Texno<span className="text-yellow-500">Dom</span>
-          </a>
+          </Link>
 
           {/* Search */}
+
           <div className="mx-auto hidden w-full max-w-xl md:block">
             <div
               className="
@@ -170,8 +181,10 @@ export default function Header() {
           </div>
 
           {/* Actions */}
+
           <div className="ml-auto flex items-center gap-1">
             {/* Favorites */}
+
             <Button
               variant="ghost"
               size="icon"
@@ -188,6 +201,7 @@ export default function Header() {
             </Button>
 
             {/* Theme */}
+
             <Button
               variant="ghost"
               size="icon"
@@ -198,7 +212,7 @@ export default function Header() {
                 text-gray-700
                 hover:bg-gray-100
                 dark:text-zinc-300
-                dark:hover:bg-white/6
+                dark:hover:bg-white/[0.06]
               "
             >
               {dark ? (

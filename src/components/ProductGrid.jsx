@@ -1,6 +1,6 @@
 import ProductCard from './ProductCard';
 
-export default function ProductGrid({products}) {
+export default function ProductGrid({ products }) {
   return (
     <section className="min-w-0 w-full">
       <div

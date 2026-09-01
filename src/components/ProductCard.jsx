@@ -1,4 +1,6 @@
 import { Button } from '@base-ui/react';
+import { Link } from 'react-router';
+
 import ProductGallery from './ProductGallery';
 
 const ProductInfoRow = ({ label, value }) => {
@@ -38,6 +40,9 @@ export default function ProductCard({ product }) {
         transition-all
         duration-200
 
+        hover:-translate-y-0.5
+        hover:shadow-md
+
         sm:dark:bg-zinc-900
         sm:dark:ring-white/[0.08]
 
@@ -45,139 +50,145 @@ export default function ProductCard({ product }) {
         sm:p-3
       "
     >
-      {/* =====================================================
-          GALLERY
-      ===================================================== */}
+      <Link
+        to={`/products/${product.id}`}
+        className="block min-w-0 cursor-pointer"
+        aria-label={`${product.name} mahsulot sahifasi`}
+      >
+        {/* =====================================================
+            GALLERY
+        ===================================================== */}
 
-      <ProductGallery
-        images={product.images}
-        badge={product.badge}
-      />
+        <ProductGallery
+          images={product.images}
+          badge={product.badge}
+        />
 
-      {/* =====================================================
-          PRODUCT NAME
-      ===================================================== */}
+        {/* =====================================================
+            PRODUCT NAME
+        ===================================================== */}
 
-      <div className="mt-2.5 min-w-0 sm:mt-3">
-        {/* Brand */}
+        <div className="mt-2.5 min-w-0 sm:mt-3">
+          {/* Brand */}
 
-        <p
+          <p
+            className="
+              truncate
+              text-[10px]
+              font-semibold
+              uppercase
+              tracking-wide
+              text-yellow-500
+
+              sm:text-xs
+            "
+          >
+            {product.brand}
+          </p>
+
+          {/* Name */}
+
+          <h2
+            className="
+              mt-0.5
+              line-clamp-2
+              min-h-9
+              text-[13px]
+              font-semibold
+              leading-[1.35]
+              tracking-tight
+              text-gray-900
+
+              dark:text-zinc-100
+
+              sm:text-sm
+              sm:leading-5
+            "
+          >
+            {product.name}
+          </h2>
+        </div>
+
+        {/* =====================================================
+            PRODUCT INFO
+        ===================================================== */}
+
+        <div
           className="
-            truncate
-            text-[10px]
-            font-semibold
-            uppercase
-            tracking-wide
-            text-yellow-500
+            mt-2.5
+            space-y-1
 
-            sm:text-xs
+            sm:mt-3
+            sm:space-y-1.5
           "
         >
-          {product.brand}
-        </p>
+          <ProductInfoRow
+            label="Rangi"
+            value={product.color}
+          />
 
-        {/* Name */}
+          <ProductInfoRow
+            label="Xotira"
+            value={product.storage}
+          />
 
-        <h2
+          <ProductInfoRow
+            label="Holati"
+            value={product.condition}
+          />
+
+          <ProductInfoRow
+            label="Almashgan"
+            value={product.replaced}
+          />
+        </div>
+
+        {/* =====================================================
+            PRICE
+        ===================================================== */}
+
+        <div
           className="
-            mt-0.5
-            line-clamp-2
-            min-h-9
-            text-[13px]
-            font-semibold
-            leading-[1.35]
-            tracking-tight
-            text-gray-900
-
-            dark:text-zinc-100
-
-            sm:text-sm
-            sm:leading-5
-          "
-        >
-          {product.name}
-        </h2>
-      </div>
-
-      {/* =====================================================
-          PRODUCT INFO
-      ===================================================== */}
-
-      <div
-        className="
-          mt-2.5
-          space-y-1
-
-          sm:mt-3
-          sm:space-y-1.5
-        "
-      >
-        <ProductInfoRow
-          label="Rangi"
-          value={product.color}
-        />
-
-        <ProductInfoRow
-          label="Xotira"
-          value={product.storage}
-        />
-
-        <ProductInfoRow
-          label="Holati"
-          value={product.condition}
-        />
-
-        <ProductInfoRow
-          label="Almashgan"
-          value={product.replaced}
-        />
-      </div>
-
-      {/* =====================================================
-          PRICE
-      ===================================================== */}
-
-      <div
-        className="
-          mt-2.5
-          flex
-          min-w-0
-          items-end
-          justify-between
-          gap-2
-
-          sm:mt-3
-          sm:items-center
-        "
-      >
-        <p
-          className="
+            mt-2.5
+            flex
             min-w-0
-            truncate
-            text-base
-            font-bold
-            tracking-tight
-            text-foreground
+            items-end
+            justify-between
+            gap-2
 
-            sm:text-xl
+            sm:mt-3
+            sm:items-center
           "
         >
-          {product.price}
-        </p>
+          <p
+            className="
+              min-w-0
+              truncate
+              text-base
+              font-bold
+              tracking-tight
+              text-foreground
 
-        <p
-          className="
-            shrink-0
-            text-[10px]
-            font-medium
-            text-muted-foreground
+              sm:text-xl
+            "
+          >
+            {product.price}
+          </p>
 
-            sm:text-sm
-          "
-        >
-          ${product.installment} x 24oy
-        </p>
-      </div>
+          <p
+            className="
+              shrink-0
+              text-[10px]
+              font-medium
+              text-muted-foreground
+
+              sm:text-sm
+            "
+          >
+            ${product.installment} x 24oy
+          </p>
+        </div>
+      </Link>
 
       {/* =====================================================
           ACTION
@@ -185,6 +196,10 @@ export default function ProductCard({ product }) {
 
       <Button
         type="button"
+        onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+        }}
         className="
           mt-2
           h-9
