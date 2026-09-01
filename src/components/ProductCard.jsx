@@ -50,11 +50,6 @@ export default function ProductCard({ product }) {
         sm:p-3
       "
     >
-      <Link
-        to={`/products/${product.id}`}
-        className="block min-w-0 cursor-pointer"
-        aria-label={`${product.name} mahsulot sahifasi`}
-      >
         {/* =====================================================
             GALLERY
         ===================================================== */}
@@ -67,7 +62,11 @@ export default function ProductCard({ product }) {
         {/* =====================================================
             PRODUCT NAME
         ===================================================== */}
-
+      <Link
+        to={`/products/${product.id}`}
+        className="block min-w-0 cursor-pointer"
+        aria-label={`${product.name} mahsulot sahifasi`}
+      >
         <div className="mt-2.5 min-w-0 sm:mt-3">
           {/* Brand */}
 

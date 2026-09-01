@@ -21,6 +21,11 @@ import ProductGallery from './ProductGallery';
 export default function ProductPage({ products }) {
   const { productId } = useParams();
   const navigate = useNavigate();
+
+  /* ==========================================================
+     SCROLL TO TOP WHEN PRODUCT CHANGES
+  ========================================================== */
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -28,6 +33,7 @@ export default function ProductPage({ products }) {
       behavior: 'instant',
     });
   }, [productId]);
+
   const [quantity, setQuantity] = useState(1);
   const [favorite, setFavorite] = useState(false);
 
@@ -149,12 +155,7 @@ export default function ProductPage({ products }) {
           HERO / PRODUCT AREA
       ====================================================== */}
 
-      <div
-        className="
-          relative
-          overflow-hidden
-        "
-      >
+      <div className="relative overflow-hidden">
         {/* Background decoration */}
 
         <div
@@ -236,7 +237,9 @@ export default function ProductPage({ products }) {
 
             <span>/</span>
 
-            <span className="font-medium text-foreground">{product.name}</span>
+            <span className="font-medium text-foreground">
+              {product.name}
+            </span>
           </div>
 
           {/* ==================================================
@@ -314,6 +317,7 @@ export default function ProductPage({ products }) {
                 className="
                   relative
                   min-w-0
+                  min-h-[420px]
                   overflow-hidden
                   border-b
                   border-gray-200/70
@@ -323,10 +327,13 @@ export default function ProductPage({ products }) {
                   to-gray-100
                   p-4
 
+                  sm:min-h-[500px]
                   sm:p-6
 
+                  md:min-h-[560px]
                   md:p-8
 
+                  lg:min-h-[680px]
                   lg:border-b-0
                   lg:border-r
                   lg:p-10
@@ -390,9 +397,26 @@ export default function ProductPage({ products }) {
                   Product #{product.id}
                 </div>
 
-                {/* Gallery */}
+                {/* =================================================
+                    GALLERY FRAME
+                ================================================= */}
 
-                <div className="relative z-[1]">
+                <div
+                  className="
+                    relative
+                    z-[1]
+                    flex
+                    min-h-[340px]
+                    items-center
+                    justify-center
+
+                    sm:min-h-[420px]
+
+                    md:min-h-[480px]
+
+                    lg:min-h-[560px]
+                  "
+                >
                   <ProductGallery
                     images={product.images}
                     badge={product.badge}
@@ -464,23 +488,11 @@ export default function ProductPage({ products }) {
                     type="button"
                     onClick={() => setFavorite((value) => !value)}
                     aria-label="Sevimlilarga qo'shish"
-                    className={`
-                      flex
-                      size-11
-                      shrink-0
-                      cursor-pointer
-                      items-center
-                      justify-center
-                      rounded-xl
-                      border
-                      transition-all
-
-                      ${
-                        favorite
-                          ? 'border-yellow-400 bg-yellow-400 text-zinc-950 shadow-lg shadow-yellow-400/20'
-                          : 'border-gray-200 bg-white text-gray-500 hover:border-yellow-400 hover:text-yellow-500 dark:border-white/[0.08] dark:bg-zinc-900 dark:text-zinc-400'
-                      }
-                    `}
+                    className={`flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-xl border transition-all ${
+                      favorite
+                        ? 'border-yellow-400 bg-yellow-400 text-zinc-950 shadow-lg shadow-yellow-400/20'
+                        : 'border-gray-200 bg-white text-gray-500 hover:border-yellow-400 hover:text-yellow-500 dark:border-white/[0.08] dark:bg-zinc-900 dark:text-zinc-400'
+                    }`}
                   >
                     <Heart
                       className="size-5"
@@ -514,6 +526,7 @@ export default function ProductPage({ products }) {
                 </h1>
 
                 {/* Badge row */}
+
                 <div className="mt-5 flex items-center gap-1.5">
                   <span className="h-1 w-10 rounded-full bg-yellow-400" />
 
@@ -521,6 +534,7 @@ export default function ProductPage({ products }) {
 
                   <span className="h-1 w-1 rounded-full bg-yellow-400/20" />
                 </div>
+
                 <div className="mt-5 flex flex-wrap items-center gap-2">
                   <span
                     className="
@@ -581,72 +595,88 @@ export default function ProductPage({ products }) {
 
                 <div
                   className="
-    relative
-    mt-7
-    overflow-hidden
-    rounded-2xl
-    border
-    border-yellow-300/70
-    bg-gray-50/80
-    p-5
-    sm:p-6
+                    relative
+                    mt-7
+                    overflow-hidden
+                    rounded-2xl
+                    border
+                    border-yellow-300/70
+                    bg-gray-50/80
+                    p-5
 
-    dark:border-yellow-200/30
-    dark:bg-zinc-800/50
-  "
+                    sm:p-6
+
+                    dark:border-yellow-200/30
+                    dark:bg-zinc-800/50
+                  "
                 >
                   {/* Top-right yellow blob */}
+
                   <div
                     className="
-      pointer-events-none
-      absolute
-      -right-16
-      -top-16
-      size-40
-      rounded-full
-      bg-yellow-400/20
-      blur-3xl
-      dark:bg-yellow-400/10
-    "
+                      pointer-events-none
+                      absolute
+                      -right-16
+                      -top-16
+                      size-40
+                      rounded-full
+                      bg-yellow-400/20
+                      blur-3xl
+
+                      dark:bg-yellow-400/10
+                    "
                   />
 
                   {/* Bottom-left yellow blob */}
+
                   <div
                     className="
-      pointer-events-none
-      absolute
-      -bottom-20
-      -left-20
-      size-44
-      rounded-full
-      bg-yellow-400/15
-      blur-3xl
-      dark:bg-yellow-400/10
-    "
+                      pointer-events-none
+                      absolute
+                      -bottom-20
+                      -left-20
+                      size-44
+                      rounded-full
+                      bg-yellow-400/15
+                      blur-3xl
+
+                      dark:bg-yellow-400/10
+                    "
                   />
+
                   <div className="relative z-[1]">
                     <p className="text-xs font-medium text-muted-foreground">
                       Bugungi narx
                     </p>
 
                     <div className="mt-1 flex flex-wrap items-end gap-x-4 gap-y-1">
-                      <span className="text-4xl font-black text-foreground tracking-[-0.035em] sm:text-5xl">
+                      <span
+                        className="
+                          text-4xl
+                          font-black
+                          tracking-[-0.035em]
+                          text-foreground
+
+                          sm:text-5xl
+                        "
+                      >
                         {product.price}
                       </span>
 
                       <span
                         className="
-          mb-1
-          rounded-lg
-          bg-yellow-400/10
-          px-2.5
-          py-1
-          text-xs
-          font-bold
-          text-yellow-600
-          dark:bg-yellow-400/10
-          dark:text-yellow-400
-        "
+                          mb-1
+                          rounded-lg
+                          bg-yellow-400/10
+                          px-2.5
+                          py-1
+                          text-xs
+                          font-bold
+                          text-yellow-600
+
+                          dark:bg-yellow-400/10
+                          dark:text-yellow-400
+                        "
                       >
                         Eng yaxshi narx
                       </span>
@@ -673,7 +703,7 @@ export default function ProductPage({ products }) {
                       grid-cols-2
                       gap-2
 
-                      sm:grid-cols-
+                      sm:grid-cols-2
                       sm:gap-3
                     "
                   >
@@ -693,68 +723,65 @@ export default function ProductPage({ products }) {
 
                 <div
                   className="
-    relative
-    overflow-hidden
-    mt-7
-    rounded-2xl
-    border
-    border-gray-200/70
-    bg-[#181818]
-    dark:bg-black
-    p-4
+                    relative
+                    mt-7
+                    overflow-hidden
+                    rounded-2xl
+                    border
+                    border-gray-200/70
+                    bg-[#181818]
+                    p-4
 
-    sm:p-5
+                    sm:p-5
 
-    dark:border-yellow-200/30
-  "
+                    dark:border-yellow-200/30
+                    dark:bg-black
+                  "
                 >
                   {/* Top-right yellow blob */}
+
                   <div
                     className="
-      pointer-events-none
-      absolute
-      -right-12
-      -top-12
-      size-28
-      rounded-full
-      bg-yellow-400/15
-      blur-2xl
-    "
+                      pointer-events-none
+                      absolute
+                      -right-12
+                      -top-12
+                      size-28
+                      rounded-full
+                      bg-yellow-400/15
+                      blur-2xl
+                    "
                   />
 
                   {/* Bottom-left yellow blob */}
+
                   <div
                     className="
-      pointer-events-none
-      absolute
-      -bottom-12
-      -left-12
-      size-28
-      rounded-full
-      bg-yellow-400/15
-      blur-2xl
-    "
+                      pointer-events-none
+                      absolute
+                      -bottom-12
+                      -left-12
+                      size-28
+                      rounded-full
+                      bg-yellow-400/15
+                      blur-2xl
+                    "
                   />
 
                   {/* Content */}
+
                   <div className="relative z-[1]">
-                    <h2
-                      className="
-        text-sm
-        font-bold
-        text-yellow-400
-      "
-                    >
+                    <h2 className="text-sm font-bold text-yellow-400">
                       Mahsulot haqida
                     </h2>
 
                     <p
                       className="
-        mt-2
-        text-sm
-        leading-6
-        text-yellow-50
-      "
+                        mt-2
+                        text-sm
+                        leading-6
+                        text-yellow-50
+                      "
                     >
                       {product.name} — sifatli va ishonchli qurilma. Mahsulot
                       tekshirilgan va xarid qilishga tayyor.
@@ -1060,14 +1087,84 @@ export default function ProductPage({ products }) {
 
 function InfoBox({ label, value }) {
   return (
-    <div className=" relative min-w-0 overflow-hidden border border-yellow-300/70 dark:border-yellow-200/30 rounded-xl bg-gray-50 p-3 sm:p-4 dark:bg-zinc-800/60 ">
-      <div className=" pointer-events-none absolute -right-10 -top-10 size-24 rounded-full bg-yellow-400/15 blur-2xl dark:bg-yellow-400/10 " />{' '}
-      <div className=" pointer-events-none absolute -bottom-10 -left-10 size-24 rounded-full bg-yellow-400/15 blur-2xl dark:bg-yellow-400/10 " />{' '}
+    <div
+      className="
+        relative
+        min-w-0
+        overflow-hidden
+        rounded-xl
+        border
+        border-yellow-300/70
+        bg-gray-50
+        p-3
+
+        sm:p-4
+
+        dark:border-yellow-200/30
+        dark:bg-zinc-800/60
+      "
+    >
+      {/* Top-right yellow blob */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-10
+          -top-10
+          size-24
+          rounded-full
+          bg-yellow-400/15
+          blur-2xl
+
+          dark:bg-yellow-400/10
+        "
+      />
+
+      {/* Bottom-left yellow blob */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-10
+          -left-10
+          size-24
+          rounded-full
+          bg-yellow-400/15
+          blur-2xl
+
+          dark:bg-yellow-400/10
+        "
+      />
+
+      {/* Content */}
+
       <div className="relative z-[1]">
-        <p className=" truncate text-[10px] font-medium text-muted-foreground sm:text-xs ">
+        <p
+          className="
+            truncate
+            text-[10px]
+            font-medium
+            text-muted-foreground
+
+            sm:text-xs
+          "
+        >
           {label}
         </p>
-        <p className=" mt-1 truncate text-xs font-bold text-foreground sm:text-sm ">
+
+        <p
+          className="
+            mt-1
+            truncate
+            text-xs
+            font-bold
+            text-foreground
+
+            sm:text-sm
+          "
+        >
           {value}
         </p>
       </div>

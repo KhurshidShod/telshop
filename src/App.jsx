@@ -28,11 +28,11 @@ const products = [
     installment: '35',
     images: [
       {
-        src: '/images/1757672591_iPhone-17-Pro-Cosmic-Orange-Back.png',
+        src: '/images/white-usb-charger-with-cable-free-png.webp',
         alt: 'iPhone 17 Pro Max back',
       },
       {
-        src: '/images/2-iPhone-17-pro-max-cosmic-orange-front.png',
+        src: '/images/61rMkfbSybL._SL1500_-100x100.jpg',
         alt: 'iPhone 17 Pro Max front',
       },
       {
